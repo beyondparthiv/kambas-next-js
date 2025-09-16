@@ -1,0 +1,63 @@
+/* Lab1 form styling */
+#wd-forms form {
+  display: grid;
+  gap: 12px;
+  max-width: 520px;
+}
+
+#wd-forms .row {
+  display: flex;
+  flex-direction: column;
+}
+
+#wd-forms label {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+#wd-forms input[type="text"],
+#wd-forms input[type="password"],
+#wd-forms input[type="email"],
+#wd-forms input[type="number"],
+#wd-forms input[type="date"],
+#wd-forms input[type="file"],
+#wd-forms select,
+#wd-forms textarea {
+  padding: 8px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+#wd-forms textarea { resize: vertical; }
+#wd-forms select[multiple] { height: 110px; }
+
+#wd-forms fieldset {
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+#wd-forms legend {
+  font-weight: 600;
+  padding: 0 4px;
+}
+
+#wd-forms .inline-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#wd-forms .actions {
+  display: flex;
+  gap: 10px;
+}
+
+#wd-forms button {
+  padding: 8px 14px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}

@@ -22,6 +22,9 @@
 
 
 
+'use client'; // This makes the whole page a Client Component so we can use onClick, useState, etc.
+import "./lab1.css";
+
 // app/labs/lab1/page.tsx
 import Link from "next/link";
 
@@ -38,8 +41,10 @@ export default function Page() {
       <section>
         <h2>Labs</h2>
         <ul>
+          <li><Link href="/Labs">Home</Link></li>
           <li><Link href="/Labs/lab1">Lab 1</Link></li>
           <li><Link href="/Labs/lab2">Lab 2</Link></li>
+          <li><Link href="/Labs/lab3">Lab 3</Link></li>
         </ul>
       </section>
 
@@ -134,6 +139,121 @@ export default function Page() {
             </tr>
           </tfoot>
         </table>
+      </div>
+
+
+      <div id="wd-forms">
+        <h4>Form Tags</h4>
+
+        <form>
+          {/* Basic fields */}
+          <div className="row">
+            <label htmlFor="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="your_id" />
+          </div>
+
+          <div className="row">
+            <label htmlFor="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="enter password" />
+          </div>
+
+          <div className="row">
+            <label htmlFor="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" placeholder="Parthiv" />
+          </div>
+
+          <div className="row">
+            <label htmlFor="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" placeholder="Modi" />
+          </div>
+
+          <div className="row">
+            <label htmlFor="bio">Textareas</label>
+            <textarea id="bio" name="bio" rows={4} placeholder="Write something..."></textarea>
+          </div>
+
+          <div className="row">
+            <label htmlFor="resume">File upload</label>
+            <input id="resume" name="resume" type="file" />
+          </div>
+
+          {/* Radios - choose one */}
+          <fieldset>
+            <legend>Choose one genre (radio)</legend>
+            <div className="inline-group">
+              <label><input type="radio" name="genreRadio" value="comedy" /> Comedy</label>
+              <label><input type="radio" name="genreRadio" value="drama" /> Drama</label>
+              <label><input type="radio" name="genreRadio" value="scifi" /> SciFi</label>
+              <label><input type="radio" name="genreRadio" value="fantasy" /> Fantasy</label>
+            </div>
+          </fieldset>
+
+          {/* Checkboxes - choose many */}
+          <fieldset>
+            <legend>Select genres (checkbox)</legend>
+            <div className="inline-group">
+              <label><input type="checkbox" name="genreCheck" value="comedy" /> Comedy</label>
+              <label><input type="checkbox" name="genreCheck" value="drama" /> Drama</label>
+              <label><input type="checkbox" name="genreCheck" value="scifi" /> SciFi</label>
+              <label><input type="checkbox" name="genreCheck" value="fantasy" /> Fantasy</label>
+            </div>
+          </fieldset>
+
+          {/* Selects */}
+          <div className="row">
+            <label htmlFor="favGenre">Select one option</label>
+            <select id="favGenre" name="favGenre" defaultValue="scifi">
+              <option value="comedy">Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="scifi">SciFi</option>
+              <option value="fantasy">Fantasy</option>
+            </select>
+          </div>
+
+          <div className="row">
+            <label htmlFor="manyGenres">Select many options</label>
+            <select id="manyGenres" name="manyGenres" multiple size={4}>
+              <option value="comedy">Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="scifi">SciFi</option>
+              <option value="fantasy">Fantasy</option>
+            </select>
+          </div>
+
+          {/* Other inputs */}
+          <div className="row">
+            <label htmlFor="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@northeastern.edu" />
+          </div>
+
+          <div className="row">
+            <label htmlFor="salary">Salary</label>
+            <input id="salary" name="salary" type="number" min={0} step={1000} placeholder="50000" />
+          </div>
+
+          <div className="row">
+            <label htmlFor="rating">Rating</label>
+            <input id="rating" name="rating" type="range" min={0} max={10} defaultValue={7} />
+          </div>
+
+          <div className="row">
+            <label htmlFor="dob">Date of Birth</label>
+            <input
+              type="date"
+              id="dob"
+              name="dob"
+              value="2025-09-09"
+            />
+          </div>
+
+
+
+          {/* Alert button for rubric */}
+          <div className="actions">
+            {/* If your page is a Server Component, render a client-only alert button component here */}
+            <button type="button" onClick={() => alert('Hello, You just clicked Button')}>Click me to alert</button>
+          </div>
+        </form>
       </div>
 
 

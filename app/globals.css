@@ -25,10 +25,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+h1{
+  font-size: 40px;
+  font-weight: bold;
+}
+
 /* Table styling */
 table, th, td {
   border: 1px solid black;
   padding: 8px;
   border-collapse: collapse;
-  text-align: center;
 }
