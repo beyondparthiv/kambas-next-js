@@ -23,76 +23,66 @@
 
 
 // app/labs/lab1/page.tsx
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main style={{ padding: "20px", fontFamily: "Arial, sans-serif", lineHeight: "1.6" }}>
-      <h1>Lab 1 - Landing Page</h1>
+      <header>
+        <h1>CS 5520 - Web Development</h1>
+        <p><strong>Student:</strong> Parthiv Modi</p>
+        <p><strong>NUID:</strong> 002025096</p>
+        <p><strong>Email:</strong> modi.par@northeastern.edu</p>
+      </header>
 
-      {/* Name and Section */}
-      <h2>Student Information</h2>
-      <p><strong>Name:</strong> Parthiv Modi</p>
-      <p><strong>Section:</strong> CS 5520 - Mobile App Dev</p>
+      <section>
+        <h2>Labs</h2>
+        <ul>
+          <li><Link href="/Labs/lab1">Lab 1</Link></li>
+          <li><Link href="/Labs/lab2">Lab 2</Link></li>
+        </ul>
+      </section>
 
-      {/* Lab Assignments */}
-      <h2>Lab Assignments</h2>
-      <ul style={{ listStyleType: "disc", marginLeft: "20px" }}>
-        <li><a href="/Labs/Lab1">Lab 1</a></li>
-        {<li><a href="/Labs/Lab2">Lab 2</a></li>
-        /* <li><a href="/labs/lab3">Lab 3</a></li>
-        <li><a href="/labs/lab4">Lab 4</a></li> */}
-      </ul>
+      <section>
+        <h2>Kambaz Application</h2>
+        <p><Link href="/kambaz">Open Kambaz App</Link></p>
+      </section>
 
-      {/* Kambaz Application */}
-      <h2>Kambaz Application</h2>
-      <p>
-        <a href="/(kambaz)" rel="noopener noreferrer">Open Kambaz App</a>
-      </p>
+      <section>
+        <h2>Source Code</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/beyondparthiv/kambas-next-js" target="_blank" rel="noopener noreferrer">
+              GitHub Repository
+            </a>
+          </li>
+        </ul>
+      </section>
 
-      {/* Source Code Repositories */}
-      <h2>Source Code Repositories</h2>
-      <ul>
-        <li>
-          <a href="https://github.com/beyondparthiv/kambas-next-js" target="_blank" rel="noopener noreferrer">
-            Kambaz Repository
-          </a>
-        </li>
-      </ul>
+      <section id="wd-headings">
+        <h2>Heading Tags</h2>
+        <h1>h1 example</h1>
+        <h2>h2 example</h2>
+        <h3>h3 example</h3>
+        <h4>h4 example</h4>
+        <h5>h5 example</h5>
+        <h6>h6 example</h6>
+      </section>
 
-      <div id="wd-headings">
-        <h1>Main Heading (h1)</h1>
-        <h2>Subheading (h2)</h2>
-        <h3>Section Title (h3)</h3>
-        <h4>Subsection Title (h4)</h4>
-        <h5>Minor Heading (h5)</h5>
-        <h6>Smallest Heading (h6)</h6>
-      </div>
+      <section id="wd-paragraphs">
+        <h2>Paragraph Tag</h2>
+        <p id="wd-p-1">This is a short paragraph.</p>
+        <p id="wd-p-2">This is the first long paragraph. Lorem ipsum text to show spacing across multiple lines.</p>
+        <p id="wd-p-3">This is the second long paragraph. More lorem ipsum to demonstrate vertical gaps between paragraphs.</p>
+        <p id="wd-p-4">This is the third paragraph. Each paragraph is wrapped in a p tag.</p>
+      </section>
 
-      <div id="wd-paragraphs">
-        <h4>Paragraph Example</h4>
-        <p id="wd-p-1"> ... </p>
-        <p id="wd-p-2">
-          This is the first paragraph. The paragraph tag is used to format
-          vertical gaps between long pieces of text like this one. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrs standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-        <p id="wd-p-3">
-          This is the second paragraph. Even though there is a deliberate white
-          gap between the paragraph above and this paragraph, by default
-          browsers render them as one contiguous piece of text as shown here on
-          the right.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-        </p>
-        <p id="wd-p-4">
-          This is the third paragraph. Wrap each paragraph with the paragraph
-          tag to tell browsers to render the gaps.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-        </p>
-      </div>
+      <section id="wd-lists">
+        <h2>List Tags</h2>
 
-
-      <div id="wd-lists">
-        <h4>List Tags</h4>
-
-        <h5>Ordered List Tag</h5>
-        <p>How to make pancakes:</p>
-        <ol id="wd-pancakes" style={{ marginLeft: "20px", paddingLeft: "20px", listStyleType: "decimal" }}>
+        <h3>Ordered List Elements</h3>
+        <p>How to make pancakes (my favorite recipe):</p>
+        <ol id="wd-pancakes">
           <li>Mix dry ingredients.</li>
           <li>Add wet ingredients.</li>
           <li>Stir to combine.</li>
@@ -100,25 +90,19 @@ export default function Page() {
           <li>Pour batter onto the skillet.</li>
           <li>Cook until bubbly on top.</li>
           <li>Flip and cook the other side.</li>
-          <li>Serve and enjoy!</li>
+          <li>Serve and enjoy.</li>
         </ol>
-      </div>
 
-      <div>
-        <h5>Unordered List Tag</h5>
-        <p>My favorite books (in no particular order)</p>
-        <ul id="wd-my-books" style={{ marginLeft: "20px", paddingLeft: "20px", listStyleType: "disc" }}>
+        <h3>Unordered List Elements</h3>
+        <p>My favorite books</p>
+        <ul id="wd-my-books">
           <li>Dune</li>
           <li>Lord of the Rings</li>
           <li>Ender&apos;s Game</li>
           <li>Red Mars</li>
           <li>The Forever War</li>
         </ul>
-      </div>
-
-
-
-
+      </section>
     </main>
   );
 }
