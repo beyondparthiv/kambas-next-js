@@ -1,29 +1,7 @@
-// export default function Lab1() {
-//   return (
-//     <div id="wd-p-tag">
-//         <h4>Paragraph Tag</h4>
-//         <p id="wd-p-1"> ... </p>
-//         <p id="wd-p-2">
-// This is the first paragraph. The paragraph tag is used to format
-// vertical gaps between long pieces of text like this one. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrs standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-//         </p>
-//         <p id="wd-p-3">
-// This is the second paragraph. Even though there is a deliberate white
-// gap between the paragraph above and this paragraph, by default
-// browsers render them as one contiguous piece of text as shown here on
-// the right.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-//         </p>
-//         <p id="wd-p-4">
-// This is the third paragraph. Wrap each paragraph with the paragraph
-// tag to tell browsers to render the gaps.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-//         </p>
-//       </div>
-//       );}
-
 
 
 'use client'; // This makes the whole page a Client Component so we can use onClick, useState, etc.
-import "./lab1.css";
+//import "./lab1.css";
 
 // app/labs/lab1/page.tsx
 import Link from "next/link";
@@ -64,6 +42,15 @@ export default function Page() {
         </ul>
       </section>
 
+      <div id="wd-lab1">
+        <h2>Lab 1</h2>
+        <h3>HTML Examples</h3>
+          <div id="wd-h-tag">
+            <h4>Heading Tags</h4>
+              Text documents are often broken up into several sections and subsections. Each section is usually prefaced with a short title or heading that attempts to summarize the topic of the section it precedes. For instance this paragraph is preceded by the heading Heading Tags. The font of the section headings are usually larger and bolder than their subsection headings. This document uses headings to introduce topics such as HTML Documents, HTML Tags, Heading Tags, etc. HTML heading tags can be used to format plain text so that it renders in a browser as large headings. There are 6 heading tags for different sizes: h1, h2, h3, h4, h5, and h6. Tag h1 is the largest heading and h6 is the smallest heading.
+          </div>
+      </div>
+
       <section id="wd-headings">
         <h2>Heading Tags</h2>
         <h1>h1 example</h1>
@@ -74,19 +61,43 @@ export default function Page() {
         <h6>h6 example</h6>
       </section>
 
-      <section id="wd-paragraphs">
-        <h2>Paragraph Tag</h2>
-        <p id="wd-p-1">This is a short paragraph.</p>
-        <p id="wd-p-2">This is the first long paragraph. Lorem ipsum text to show spacing across multiple lines.</p>
-        <p id="wd-p-3">This is the second long paragraph. More lorem ipsum to demonstrate vertical gaps between paragraphs.</p>
-        <p id="wd-p-4">This is the third paragraph. Each paragraph is wrapped in a p tag.</p>
-      </section>
+      <div id="wd-p-tag">
+        <h4>Paragraph Tag</h4>
+        <p id="wd-p-1"> 
+          This is the first paragraph. The paragraph tag is used to format
+          vertical gaps between long pieces of text like this one.
 
-      <section id="wd-lists">
-        <h2>List Tags</h2>
+          This is the second paragraph. Even though there is a deliberate white
+          gap between the paragraph above and this paragraph, by default
+          browsers render them as one contiguous piece of text as shown here on
+          the right.
 
-        <h3>Ordered List Elements</h3>
-        <p>How to make pancakes (my favorite recipe):</p>
+          This is the third paragraph. Wrap each paragraph with the paragraph
+          tag to tell browsers to render the gaps.
+  
+        </p>
+        <p id="wd-p-2">
+          This is the first paragraph. The paragraph tag is used to format
+          vertical gaps between long pieces of text like this one.
+        </p>
+        <p id="wd-p-3">
+          This is the second paragraph. Even though there is a deliberate white
+          gap between the paragraph above and this paragraph, by default
+          browsers render them as one contiguous piece of text as shown here on
+          the right.
+        </p>
+        <p id="wd-p-4">
+          This is the third paragraph. Wrap each paragraph with the paragraph
+          tag to tell browsers to render the gaps.
+        </p>
+      </div>
+
+
+
+      <div id="wd-lists">
+        <h4>List Tags</h4>
+        <h5>Ordered List Tag</h5>
+        How to make pancakes:
         <ol id="wd-pancakes">
           <li>Mix dry ingredients.</li>
           <li>Add wet ingredients.</li>
@@ -95,23 +106,29 @@ export default function Page() {
           <li>Pour batter onto the skillet.</li>
           <li>Cook until bubbly on top.</li>
           <li>Flip and cook the other side.</li>
-          <li>Serve and enjoy.</li>
+          <li>Serve and enjoy!</li>
         </ol>
+      </div>  
 
-        <h3>Unordered List Elements</h3>
-        <p>My favorite books</p>
-        <ul id="wd-my-books">
-          <li>Dune</li>
-          <li>Lord of the Rings</li>
-          <li>Ender&apos;s Game</li>
-          <li>Red Mars</li>
-          <li>The Forever War</li>
-        </ul>
-      </section>
+      <h5>Unordered List Tag</h5>
+        My favorite books (in no particular order)
+      <ul id="wd-my-books">
+        <li>Dune</li>
+        <li>Lord of the Rings</li>
+        <li>Ender&apos;s Game</li>
+        <li>Red Mars</li>
+        <li>Mahaghatha</li>
+        <li>The Great Gatsby</li>
+        <li>Pride and Prejudice</li>
+        <li>1984</li>
+        <li>To Kill a Mockingbird</li>
+      </ul>
+
+   
 
       <div id="wd-tables">
         <h4>Table Tags</h4>
-        <table width="100%">
+        <table border={1} width="100%">
           <thead>
             <tr>
               <th>Quiz</th>
@@ -141,127 +158,164 @@ export default function Page() {
         </table>
       </div>
 
+      <div id="wd-images">
+        <h4>Image tag</h4>
+        Loading an image from the internet: <br />
+        <img id="wd-starship" width="400px"   src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" />
+        <br />
+        Loading a local image:
+        <br />
+        <img id="wd-teslabot" src="/images/teslabot.jpg" height="200px" /></div>
+
 
       <div id="wd-forms">
-        <h4>Form Tags</h4>
-
-        <form>
-          {/* Basic fields */}
-          <div className="row">
-            <label htmlFor="username">Username</label>
-            <input id="username" name="username" type="text" placeholder="your_id" />
-          </div>
-
-          <div className="row">
-            <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="enter password" />
-          </div>
-
-          <div className="row">
-            <label htmlFor="firstName">First Name</label>
-            <input id="firstName" name="firstName" type="text" placeholder="Parthiv" />
-          </div>
-
-          <div className="row">
-            <label htmlFor="lastName">Last Name</label>
-            <input id="lastName" name="lastName" type="text" placeholder="Modi" />
-          </div>
-
-          <div className="row">
-            <label htmlFor="bio">Textareas</label>
-            <textarea id="bio" name="bio" rows={4} placeholder="Write something..."></textarea>
-          </div>
-
-          <div className="row">
-            <label htmlFor="resume">File upload</label>
-            <input id="resume" name="resume" type="file" />
-          </div>
-
-          {/* Radios - choose one */}
-          <fieldset>
-            <legend>Choose one genre (radio)</legend>
-            <div className="inline-group">
-              <label><input type="radio" name="genreRadio" value="comedy" /> Comedy</label>
-              <label><input type="radio" name="genreRadio" value="drama" /> Drama</label>
-              <label><input type="radio" name="genreRadio" value="scifi" /> SciFi</label>
-              <label><input type="radio" name="genreRadio" value="fantasy" /> Fantasy</label>
-            </div>
-          </fieldset>
-
-          {/* Checkboxes - choose many */}
-          <fieldset>
-            <legend>Select genres (checkbox)</legend>
-            <div className="inline-group">
-              <label><input type="checkbox" name="genreCheck" value="comedy" /> Comedy</label>
-              <label><input type="checkbox" name="genreCheck" value="drama" /> Drama</label>
-              <label><input type="checkbox" name="genreCheck" value="scifi" /> SciFi</label>
-              <label><input type="checkbox" name="genreCheck" value="fantasy" /> Fantasy</label>
-            </div>
-          </fieldset>
-
-          {/* Selects */}
-          <div className="row">
-            <label htmlFor="favGenre">Select one option</label>
-            <select id="favGenre" name="favGenre" defaultValue="scifi">
-              <option value="comedy">Comedy</option>
-              <option value="drama">Drama</option>
-              <option value="scifi">SciFi</option>
-              <option value="fantasy">Fantasy</option>
-            </select>
-          </div>
-
-          <div className="row">
-            <label htmlFor="manyGenres">Select many options</label>
-            <select id="manyGenres" name="manyGenres" multiple size={4}>
-              <option value="comedy">Comedy</option>
-              <option value="drama">Drama</option>
-              <option value="scifi">SciFi</option>
-              <option value="fantasy">Fantasy</option>
-            </select>
-          </div>
-
-          {/* Other inputs */}
-          <div className="row">
-            <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@northeastern.edu" />
-          </div>
-
-          <div className="row">
-            <label htmlFor="salary">Salary</label>
-            <input id="salary" name="salary" type="number" min={0} step={1000} placeholder="50000" />
-          </div>
-
-          <div className="row">
-            <label htmlFor="rating">Rating</label>
-            <input id="rating" name="rating" type="range" min={0} max={10} defaultValue={7} />
-          </div>
-
-          <div className="row">
-            <label htmlFor="dob">Date of Birth</label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              value="2025-09-09"
-            />
-          </div>
-
-
-
-          {/* Alert button for rubric */}
-          <div className="actions">
-            {/* If your page is a Server Component, render a client-only alert button component here */}
-            <button type="button" onClick={() => alert('Hello, You just clicked Button')}>Click me to alert</button>
-          </div>
+        <h4>Form Elements</h4>
+        <form id="wd-text-fields">
+          <h5>Text Fields</h5>
+          <label htmlFor="wd-text-fields-username">Username:</label>
+          <input id="wd-text-fields-username" placeholder="parthivmodi" /> <br />
+          <label htmlFor="wd-text-fields-password">Password:</label>
+          <input type="password" id="wd-text-fields-password" value="123@#$asd" />
+          <br />
+          <label htmlFor="wd-text-fields-first-name">First name:</label>
+          <input type="text" id="wd-text-fields-first-name" title="Parhtiv" /> <br />
+          <label htmlFor="wd-text-fields-last-name">Last name:</label>
+          <input type="text" id="wd-text-fields-last-name" placeholder="Modi"
+            value="" title="The last name" />
+          {/* copy rest of form elements here  */}
         </form>
       </div>
 
+      <h5>Text boxes</h5>
+        <label>Biography:</label><br/>
+        <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+        <br />
+      
+        <button type="button">
+          Delete
+        </button><br />
+        <button type="button">
+          Edit
+        </button><br />
+        <button type="submit">
+          Update
+        </button><br />
 
 
+      <h5 id="wd-buttons">Buttons</h5>
+      <button id="wd-all-good"
+        onClick={() => alert("Life is Good!")}
+            type="button">
+        Hello World!
+      </button><br />
 
+      <label>
+        <input name="b" type="checkbox"/> Tenured
+      </label><br />
 
+      Tenured: 
+      <br /><label>
+        <input name="a" type="radio"/> Yes
+      </label><br />
+      <label>
+        <input name="a" type="radio" checked/> No
+      </label><br />
 
+      <h5 id="wd-radio-buttons">Radio buttons</h5>
 
+      <label>Favorite movie genre:</label><br />
+
+      <input type="radio" name="radio-genre" id="wd-radio-comedy"/>
+      <label htmlFor="wd-radio-comedy">Comedy</label><br />
+
+      <input type="radio" name="radio-genre" id="wd-radio-drama"/>
+      <label htmlFor="wd-radio-drama">Drama</label><br />
+
+      <input type="radio" name="radio-genre" id="wd-radio-scifi"/>
+      <label htmlFor="wd-radio-scifi">Science Fiction</label><br />
+
+      <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
+      <label htmlFor="wd-radio-fantasy">Fantasy</label><br />
+
+      <h5 id="wd-checkboxes">Checkboxes</h5>
+      <label>Favorite movie genre:</label>
+
+      <input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/>
+      <label htmlFor="wd-chkbox-comedy">Comedy</label><br/>
+
+      <input type="checkbox" name="check-genre" id="wd-chkbox-drama"/>
+      <label htmlFor="wd-chkbox-drama">Drama</label><br/>
+
+      <input type="checkbox" name="check-genre" id="wd-chkbox-scifi"/>
+      <label htmlFor="wd-chkbox-scifi">Science Fiction</label><br/>
+
+      <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/>
+      <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
+
+      <select name="role">
+      <option value="FACULTY">
+          Faculty
+      </option>
+      <option value="STUDENT">
+          Student
+      </option>
+      <option value="ADMIN">
+          Admin
+      </option>
+      </select>
+
+      <h4 id="wd-dropdowns">Dropdowns</h4>
+      <h5>Select one</h5>
+      <label htmlFor="wd-select-one-genre">
+          Favorite movie genre: </label><br/>
+      <select id="wd-select-one-genre">
+        <option value="COMEDY">Comedy</option>
+        <option value="DRAMA">Drama</option>
+        <option selected value="SCIFI">
+            Science Fiction</option>
+        <option value="FANTASY">Fantasy</option>
+      </select>
+
+      <h5>Select many</h5>
+      <label htmlFor="wd-select-many-genre">
+      Favorite all movie genres: </label><br/>
+      <select id="wd-select-many-genre" multiple>
+        <option selected value="COMEDY">Comedy</option>
+        <option value="DRAMA">Drama</option>
+        <option selected value="SCIFI">
+            Science Fiction</option>
+        <option value="FANTASY">Fantasy</option>
+      </select>
+
+      <h4>Other HTML field types</h4>
+
+      <label htmlFor="wd-text-fields-salary-start">
+      Starting salary:</label>
+      <input type="number"
+            id="wd-text-fields-salary-start"
+            placeholder="1000"
+            value="100000"/><br/>
+
+      <label htmlFor="wd-text-fields-rating">
+      Rating: </label>
+      <input type="range" id="wd-text-fields-rating" placeholder="Doe" max="5" value="4"/><br/>
+
+      <label htmlFor="wd-text-fields-email">
+      Email: </label>
+      <input type="email"
+            placeholder="modi.part@northeastern.edu"
+            id="wd-text-fields-email"/><br/>
+
+      <label htmlFor="wd-text-fields-dob">
+      Date of birth: </label>
+      <input type="date"
+            id="wd-text-fields-dob"
+            value="2000-01-21"/><br/>
+
+      {/* <label for="dobFld">
+      Date of Birth
+      </label>
+      <input type="date" id="dobFld" value="2011-11-22" /> */}
 
     </main>
   );
