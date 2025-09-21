@@ -1,9 +1,6 @@
 
 
-'use client'; // This makes the whole page a Client Component so we can use onClick, useState, etc.
-//import "./lab1.css";
-
-// app/labs/lab1/page.tsx
+'use client'; 
 import Link from "next/link";
 
 export default function Page() {
@@ -165,7 +162,7 @@ export default function Page() {
         <br />
         Loading a local image:
         <br />
-        <img id="wd-teslabot" src="/images/teslabot.jpg" height="200px" /></div>
+        <img id="wd-teslabot" src="/images/teslabot.jpg" height="200px" width="400px"/></div>
 
 
       <div id="wd-forms">
@@ -182,7 +179,7 @@ export default function Page() {
           <label htmlFor="wd-text-fields-last-name">Last name:</label>
           <input type="text" id="wd-text-fields-last-name" placeholder="Modi"
             value="" title="The last name" />
-          {/* copy rest of form elements here  */}
+          
         </form>
       </div>
 
@@ -312,10 +309,17 @@ export default function Page() {
             id="wd-text-fields-dob"
             value="2000-01-21"/><br/>
 
-      {/* <label for="dobFld">
-      Date of Birth
-      </label>
-      <input type="date" id="dobFld" value="2011-11-22" /> */}
+      <h4>Anchor tag</h4>
+      Please
+      <a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
+      to get dummy text<br/>
+
+      <h4>File Upload</h4>
+      <form>
+        <label htmlFor="file">Upload File:</label>
+        <input type="file" id="file" name="file" /><br /><br />
+        <button type="submit">Submit</button>
+      </form>
 
     </main>
   );
