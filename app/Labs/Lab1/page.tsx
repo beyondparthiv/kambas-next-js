@@ -17,10 +17,11 @@ export default function Page() {
         <h2>Labs</h2>
         <ul>
           <li><Link href="/Labs">Home</Link></li>
-          <li><Link href="/Labs/lab1">Lab 1</Link></li>
+          <li><Link href="/Labs/lab1">Lab 1 (this page)</Link></li>
           <li><Link href="/Labs/lab2">Lab 2</Link></li>
           <li><Link href="/Labs/lab3">Lab 3</Link></li>
         </ul>
+
       </section>
 
       <section>
