@@ -83,3 +83,46 @@
 .wd-wide-rect { background: #ffd400; height: 80px; width: 280px; margin: 8px 0; display: flex; align-items: center; justify-content: center; }
 .wd-tall-rect { background: #0d6efd; color: #fff; height: 220px; width: 120px; margin: 8px 0; display: flex; align-items: center; justify-content: center; }
 .wd-square { background: #dc3545; color: #fff; height: 160px; width: 160px; margin: 8px 0; display: flex; align-items: center; justify-content: center; }
+
+
+/* helpers */
+.wd-yellow { background: #ffd400; }
+.wd-blue { background: #0d6efd; color: #fff; }
+.wd-red { background: #dc3545; color: #fff; }
+.wd-note { font-size: 0.9rem; opacity: 0.9; }
+
+/* A.5 Relative */
+.wd-rel-box { width: 320px; padding: 8px; margin: 8px 0; border: 2px solid #000; background: #ffd400; }
+#wd-rel-yellow { position: relative; left: 12px; top: 8px; }
+#wd-rel-blue { position: relative; left: 12px; top: -8px; background: #0d6efd; color: #fff; }
+
+/* A.5 Absolute stage and shapes */
+.wd-abs-stage { position: relative; height: 220px; border: 2px dashed #999; margin: 8px 0 16px; }
+.wd-abs-portrait { position: absolute; left: 10px; top: 10px; width: 90px; height: 160px; background: #ffd400; display: flex; align-items: center; justify-content: center; border: 3px solid #333; }
+.wd-abs-landscape { position: absolute; left: 90px; top: 80px; width: 200px; height: 90px; background: #0d6efd; color: #fff; display: flex; align-items: center; justify-content: center; border: 3px solid #333; z-index: 3; }
+.wd-abs-square { position: absolute; left: 220px; top: 10px; width: 110px; height: 110px; background: #dc3545; color: #fff; display: flex; align-items: center; justify-content: center; border: 3px solid #333; }
+
+/* A.5 Fixed */
+.wd-fixed-blue { position: fixed; right: 16px; bottom: 16px; width: 160px; height: 60px; background: #0d6efd; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+
+/* A.6 Floats */
+.wd-floats { margin: 8px 0; }
+.wd-floats::after { content: ""; display: table; clear: both; }
+.wd-float-box { float: left; width: 120px; height: 80px; margin-right: 8px; border: 2px solid #333; display: flex; align-items: center; justify-content: center; }
+.wd-float-right-img { float: right; width: 140px; height: 90px; margin: 0 0 8px 8px; border: 2px solid #333; }
+.wd-clear { clear: both; }
+
+/* A.6 Grid */
+.wd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.wd-grid-cell { background: #e9ecef; padding: 12px; text-align: center; border: 2px solid #adb5bd; }
+
+/* A.7 Flex */
+.wd-flex-123 { display: flex; gap: 8px; margin: 8px 0; }
+.wd-flex-col { flex: 1; padding: 16px; text-align: center; background: #e9ecef; border: 2px solid #adb5bd; }
+
+/* A.8 React Icons */
+#w d-icons, #wd-icons svg { font-size: 28px; }
+#wd-icons { display: flex; gap: 12px; align-items: center; }
+
+/* B.2 Bootstrap demo cell */
+.wd-bs-cell { background: #f8f9fa; border: 1px solid #ced4da; padding: 12px; text-align: center; }

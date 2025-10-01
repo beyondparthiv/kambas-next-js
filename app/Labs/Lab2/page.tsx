@@ -1,3 +1,7 @@
+import { FaReact, FaAndroid, FaGithub, FaLinkedin, FaHtml5, FaCss3Alt } from "react-icons/fa";
+
+
+
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -103,6 +107,134 @@ export default function Lab2() {
         <div id="wd-div-14" className="wd-wide-rect">wider than tall (yellow)</div>
         <div id="wd-div-15" className="wd-tall-rect">taller than wide (blue)</div>
         <div id="wd-div-16" className="wd-square">height equals width (red)</div>
+      </section>
+
+
+    {/* ------- A.5 Positioning & Z-index -------- */}
+      <section id="wd-section-positioning">
+        <h2 id="wd-h-20">A.5 Positioning &amp; Z-index</h2>
+
+        {/* Relative */}
+        <h3 id="wd-h-21">Relative</h3>
+        <div id="wd-rel-yellow" className="wd-rel-box wd-yellow">Yellow, nudged down and right</div>
+        <div id="wd-rel-blue" className="wd-rel-box wd-blue-up">Blue, moved up and right</div>
+
+        {/* Absolute */}
+        <h3 id="wd-h-22">Absolute</h3>
+        <div id="wd-abs-stage" className="wd-abs-stage">
+          <div id="wd-abs-portrait" className="wd-abs-portrait">Portrait</div>
+          <div id="wd-abs-landscape" className="wd-abs-landscape">Landscape</div>
+          <div id="wd-abs-square" className="wd-abs-square">Square</div>
+        </div>
+
+        {/* Fixed */}
+        <h3 id="wd-h-23">Fixed</h3>
+        <div id="wd-fixed-blue" className="wd-fixed-blue">Fixed: I do not scroll</div>
+
+        {/* Z-index */}
+        <h3 id="wd-h-24">Z-Index</h3>
+        <p id="wd-p-20">
+          In the absolute stage above, the blue <strong>Landscape</strong> has a higher z-index, so it renders above Portrait and Square.
+        </p>
+      </section>
+
+      {/* ------- A.6 Floating & Grid -------- */}
+      <section id="wd-section-floats-grid">
+        <h2 id="wd-h-25">A.6 Floating &amp; Grid</h2>
+
+        {/* Floating rectangles horizontally */}
+        <h3 id="wd-h-26">Floating Rectangles (horizontal)</h3>
+        <div id="wd-floats" className="wd-floats">
+          <div id="wd-float-a" className="wd-float-box wd-yellow">A</div>
+          <div id="wd-float-b" className="wd-float-box wd-blue">B</div>
+          <div id="wd-float-c" className="wd-float-box wd-red">C</div>
+        </div>
+
+        <div id="wd-float-right-wrap" className="wd-float-right-wrap">
+        <img
+          id="wd-float-img"
+          className="wd-float-right-img"
+          src="https://placehold.co/140x90?text=Image"
+          alt="Image"
+          width={140}
+          height={90}
+        />
+        <p id="wd-p-21">
+          This paragraph wraps around the floated image. Add a couple of lines so the
+          wrapping is obvious. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Integer non nisi at lectus sagittis dictum.
+        </p>
+        <div className="wd-clear" />
+        </div>
+
+
+        {/* CSS Grid sample */}
+        <h3 id="wd-h-28">Grid layout</h3>
+        <div id="wd-grid" className="wd-grid">
+          <div id="wd-grid-1" className="wd-grid-cell">1</div>
+          <div id="wd-grid-2" className="wd-grid-cell">2</div>
+          <div id="wd-grid-3" className="wd-grid-cell">3</div>
+          <div id="wd-grid-4" className="wd-grid-cell">4</div>
+          <div id="wd-grid-5" className="wd-grid-cell">5</div>
+          <div id="wd-grid-6" className="wd-grid-cell">6</div>
+        </div>
+      </section>
+
+      {/* ------- A.7 Flex columns -------- */}
+      <section id="wd-section-flex">
+        <h2 id="wd-h-29">A.7 Flex - Columns 1, 2, 3 laid out horizontally</h2>
+        <div id="wd-flex-123" className="wd-flex-123">
+          <div id="wd-flex-col-1" className="wd-flex-col">1</div>
+          <div id="wd-flex-col-2" className="wd-flex-col">2</div>
+          <div id="wd-flex-col-3" className="wd-flex-col">3</div>
+        </div>
+      </section>
+
+      {/* ------- A.8 React Icons sample -------- */}
+      <section id="wd-section-icons">
+        <h2 id="wd-h-30">A.8 React Icons Sample</h2>
+        <div id="wd-icons" className="wd-icons">
+          <FaReact title="React" />
+          <FaAndroid title="Android" />
+          <FaGithub title="GitHub" />
+          <FaLinkedin title="LinkedIn" />
+          <FaHtml5 title="HTML5" />
+          <FaCss3Alt title="CSS3" />
+        </div>
+        <p id="wd-p-22" className="wd-note">
+          If icons do not render, run <code>npm i react-icons</code>.
+        </p>
+      </section>
+
+      {/* ------- B.1 Bootstrap containers -------- */}
+      <section id="wd-section-bs-container">
+        <h2 id="wd-h-31">B.1 Bootstrap - Container padding</h2>
+        <div id="wd-bs-container" className="container border p-2">
+          This area has thin padding from Bootstrap&apos;s <code>.container</code> and <code>.p-2</code>.
+        </div>
+      </section>
+
+      {/* ------- B.2 Bootstrap grids -------- */}
+      <section id="wd-section-bs-grids" className="mt-3">
+        <h2 id="wd-h-32">B.2 Bootstrap - Grids</h2>
+
+        <h3 id="wd-h-33" className="mt-2">Left / Right half</h3>
+        <div className="row g-2">
+          <div className="col-6"><div className="wd-bs-cell">Left half</div></div>
+          <div className="col-6"><div className="wd-bs-cell">Right half</div></div>
+        </div>
+
+        <h3 id="wd-h-34" className="mt-3">One / Two thirds</h3>
+        <div className="row g-2">
+          <div className="col-4"><div className="wd-bs-cell">One third</div></div>
+          <div className="col-8"><div className="wd-bs-cell">Two thirds</div></div>
+        </div>
+
+        <h3 id="wd-h-35" className="mt-3">Side / Main content</h3>
+        <div className="row g-2">
+          <div className="col-3"><div className="wd-bs-cell">Side</div></div>
+          <div className="col-9"><div className="wd-bs-cell">Main</div></div>
+        </div>
       </section>
     </div>
   );

@@ -16,10 +16,10 @@ export default function Page() {
       <section>
         <h2>Labs</h2>
         <ul>
-          <li><Link href="/Labs">Home</Link></li>
-          <li><Link href="/Labs/lab1">Lab 1 (this page)</Link></li>
-          <li><Link href="/Labs/lab2">Lab 2</Link></li>
-          <li><Link href="/Labs/lab3">Lab 3</Link></li>
+          <li><Link href="/labs">Home</Link></li>
+          <li><Link href="/labs/lab1">Lab 1 (this page)</Link></li>
+          <li><Link href="/labs/lab2">Lab 2</Link></li>
+          <li><Link href="/labs/lab3">Lab 3</Link></li>
         </ul>
 
       </section>

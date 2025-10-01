@@ -9,6 +9,6 @@ export default function KambazNavigation() {
       <Link href="/Dashboard" > Courses</Link><br/>
       <Link href="/Calendar"  > Calendar</Link><br/>
       <Link href="/Inbox"     > Inbox</Link><br/>
-      <Link href="/Labs"      > Labs</Link><br/>
+      <Link href="/labs"      > Labs</Link><br/>
     </div>
 );}
