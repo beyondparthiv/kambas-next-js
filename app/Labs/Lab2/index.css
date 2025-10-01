@@ -1,21 +1,85 @@
-p {
-   background-color: green;
-   color: white;
+/* A.1 Selectors */
+#wd-p-1.wd-id-white-red { color: #fff; background: #c00; padding: 8px; }
+#wd-p-2.wd-id-black-yellow { color: #000; background: #ffd400; padding: 8px; }
+
+.wd-class-blue-yellow { color: #0a58ca; background: #ffd400; padding: 6px 8px; }
+
+#wd-div-1.wd-structure-div { color: #fff; background: #c00; padding: 10px; }
+#wd-div-1 .wd-structure-span { color: #0a58ca; background: #ffd400; font-size: 0.9rem; margin-left: 6px; padding: 2px 6px; }
+
+/* A.2 Colors */
+.wd-fg-blue-on-white { color: #0d6efd; background: #fff; padding: 6px 8px; }
+.wd-fg-red-on-white  { color: #dc3545; background: #fff; padding: 6px 8px; }
+.wd-fg-green-on-white{ color: #198754; background: #fff; padding: 6px 8px; }
+
+.wd-bg-white-on-blue { color: #fff; background: #0d6efd; padding: 6px 8px; }
+.wd-bg-black-on-red  { color: #000; background: #dc3545; padding: 6px 8px; }
+.wd-bg-white-on-green{ color: #fff; background: #198754; padding: 2px 6px; border-radius: 4px; }
+
+/* A.3 Borders, Margins, Padding */
+.wd-border-fat-red {
+  border: 6px solid #dc3545;
+  padding: 6px;
+  margin: 6px 0;
+}
+.wd-border-thin-blue-dashed {
+  border: 2px dashed #0d6efd;
+  padding: 6px;
+  margin: 6px 0;
 }
 
-.wd-fg-color-black { color: black; }
-.wd-fg-color-white { color: white; }
-.wd-fg-color-blue { color: #7070ff; }
-.wd-fg-color-red { color: #ff7070; }
-.wd-fg-color-green { color: green; }
+/* padding variations */
+.wd-pad-top-left {
+  border: 6px solid #dc3545;
+  background: #ffd400;
+  padding-top: 24px;
+  padding-left: 24px;
+  margin: 8px 0;
+}
+.wd-pad-bottom {
+  border: 6px solid #0d6efd;
+  background: #ffd400;
+  padding-bottom: 24px;
+  margin: 8px 0;
+}
+.wd-pad-all {
+  border: 6px solid #ffd400;
+  background: #0d6efd;
+  padding: 24px;
+  color: #fff;
+  margin: 8px 0;
+}
 
-.wd-bg-color-yellow {
-   background-color: #ffff07; }
-.wd-bg-color-blue {
-   background-color: #7070ff; }
-.wd-bg-color-red {
-   background-color: #ff7070; }
-.wd-bg-color-green {
-   background-color: green;     }
-.wd-bg-color-gray {
-   background-color: lightgray; }
+/* margin variations */
+.wd-margin-bottom {
+  border: 6px solid #dc3545;
+  background: #ffd400;
+  padding: 6px;
+  margin-bottom: 24px;
+}
+.wd-centered {
+  border: 6px solid #0d6efd;
+  background: #ffd400;
+  padding: 6px;
+  width: 240px;
+  margin: 12px auto;
+  text-align: center;
+}
+.wd-margin-all {
+  border: 6px solid #ffd400;
+  background: #0d6efd;
+  color: #fff;
+  padding: 6px;
+  margin: 24px;
+}
+
+/* A.4 Corners & Dimensions */
+.wd-round-top { background: #e9ecef; border-radius: 16px 16px 0 0; padding: 8px; margin: 8px 0; }
+.wd-round-bottom { background: #e9ecef; border-radius: 0 0 16px 16px; padding: 8px; margin: 8px 0; }
+.wd-round-all { background: #e9ecef; border-radius: 16px; padding: 8px; margin: 8px 0; }
+.wd-round-except-tr { background: #e9ecef; border-radius: 16px 0 16px 16px; padding: 8px; margin: 8px 0; }
+
+/* rectangles and square */
+.wd-wide-rect { background: #ffd400; height: 80px; width: 280px; margin: 8px 0; display: flex; align-items: center; justify-content: center; }
+.wd-tall-rect { background: #0d6efd; color: #fff; height: 220px; width: 120px; margin: 8px 0; display: flex; align-items: center; justify-content: center; }
+.wd-square { background: #dc3545; color: #fff; height: 160px; width: 160px; margin: 8px 0; display: flex; align-items: center; justify-content: center; }
