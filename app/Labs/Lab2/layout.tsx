@@ -1,13 +1,22 @@
-// app/Labs/lab2/layout.tsx
-import React from "react";
-import "./index.css"; // this pulls in your Lab-2 styles
+import { ReactNode } from "react";
+import TOC from "../TOC";    
+import "./index.css";        
 
 export const metadata = { title: "Lab 2" };
 
 export default function Lab2Layout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <div id="wd-lab2-layout">{children}</div>;
+}: Readonly<{ children: ReactNode }>) {
+  return (
+    <table id="wd-lab2-layout" width="100%">
+      <tbody>
+        <tr>
+          <td valign="top" width="100px">
+            <TOC />
+          </td>
+          <td valign="top">{children}</td>
+        </tr>
+      </tbody>
+    </table>
+  );
 }
