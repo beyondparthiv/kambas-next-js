@@ -106,6 +106,61 @@
 .wd-fixed-blue { position: fixed; right: 16px; bottom: 16px; width: 160px; height: 60px; background: #0d6efd; color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.2); }
 
 /* A.6 Floats */
+
+/* ---------- Float (Simple) ---------- */
+.wd-float-left  { float: left;  margin: 0 12px 8px 0; }
+.wd-float-right { float: right; margin: 0 0 8px 12px; }
+.wd-clear { clear: both; }
+
+.wd-code {
+  font-family: "Courier New", monospace;
+  background: #fff;
+  border: 1px solid #cfcfcf;
+  padding: 12px;
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+}
+
+/* ---------- Grid layout built with floats (like example) ---------- */
+.wd-grid-demo {
+  border: 1px solid #cfcfcf;
+  padding: 24px;
+  width: min(980px, 92%);
+  margin: 0 auto 24px;
+}
+
+.wd-grid-row { clear: both; margin-bottom: 16px; }
+
+/* columns */
+.wd-grid-col-half-page       { width: 50%; float: left; }
+.wd-grid-col-third-page      { width: 33%; float: left; }
+.wd-grid-col-two-thirds-page { width: 67%; float: left; }
+.wd-grid-col-side            { width: 20%; float: left; }
+.wd-grid-col-main            { width: 60%; float: left; }
+
+/* cells look like the example */
+.wd-cell {
+  border: 3px solid #333;
+  padding: 22px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+/* colors roughly matching the examples */
+.wd-left-half        { background: #ffef00; }              /* yellow */
+.wd-right-half       { background: #7272ff; color: #fff; } /* purple/blue */
+.wd-left-third       { background: #066a06; color: #fff; } /* dark green */
+.wd-right-two-thirds { background: #ff7f7f; }              /* salmon */
+.wd-side             { background: #ffef00; }              /* yellow sidebars */
+.wd-main             { background: #7272ff; color: #fff; } /* purple main */
+.wd-side-right       { background: #066a06; color: #fff; } /* green right sidebar */
+
+#wd-main small,
+#wd-side-left small,
+#wd-side-right small { font-weight: 400; font-size: 18px; }
+
+
 .wd-floats { margin: 8px 0; }
 .wd-floats::after { content: ""; display: table; clear: both; }
 .wd-float-box { float: left; width: 120px; height: 80px; margin-right: 8px; border: 2px solid #333; display: flex; align-items: center; justify-content: center; }

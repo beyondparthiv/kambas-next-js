@@ -26,7 +26,7 @@ export default function Page() {
 
       <section>
         <h2>Kambaz Application</h2>
-        <p><Link href="/kambaz">Open Kambaz App</Link></p>
+        <p><Link href="/(Kambaz)">Open Kambaz App</Link></p>
       </section>
 
       <section>
