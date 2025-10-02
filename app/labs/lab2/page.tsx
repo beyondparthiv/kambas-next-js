@@ -234,10 +234,192 @@ export default function Lab2() {
     <p className="wd-note">Resize the window to see 1..12 change rows at each breakpoint.</p>
   </section>
 
+
+  {/* ================== B.3 Bootstrap – Responsive (A/B/C/D) ================== */}
+  <section id="wd-section-bs-responsive-abcd" className="mt-3">
+    <h2 id="wd-h-36">B.3 Bootstrap – Responsive (A/B/C/D)</h2>
+    {/* xs: stacked; ≥sm: 2 per row; ≥lg: 4 per row */}
+    <div className="row g-2 text-center">
+      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">A</div></div>
+      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">B</div></div>
+      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">C</div></div>
+      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">D</div></div>
     </div>
-    );
+  </section>
 
-    
+  {/* ================== B.4 Bootstrap – Responsive (1..12) ================== */}
+  <section id="wd-section-bs-responsive-1-12" className="mt-3">
+    <h2 id="wd-h-37">B.4 Bootstrap - Responsive (1..12)</h2>
+    {/* xs: 1; sm: 2; md: 3; lg: 4; xl: 6 per row */}
+    <div className="row g-2 text-center">
+      {Array.from({ length: 12 }).map((_, i) => (
+        <div key={i} className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+          <div className="wd-bs-cell">{i + 1}</div>
+        </div>
+      ))}
+    </div>
+  </section>
 
+  {/* ================== C.1 Bootstrap – Tables (Quizzes) ================== */}
+  <section id="wd-section-bs-tables" className="mt-4">
+    <h2 id="wd-h-38">C.1 Bootstrap - Table (Quizzes)</h2>
+    <table id="wd-quizzes-table" className="table table-bordered table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Quiz</th>
+          <th>Due</th>
+          <th>Points</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Quiz 1: HTML</td><td>Sep 10</td><td>10</td><td>Completed</td></tr>
+        <tr><td>Quiz 2: CSS</td><td>Sep 17</td><td>10</td><td>Completed</td></tr>
+        <tr><td>Quiz 3: JS</td><td>Sep 24</td><td>10</td><td>Open</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="wd-h-39" className="mt-4">C.2 Responsive wide table (scrolls on narrow)</h3>
+    <div className="table-responsive wd-table-scroll">
+      <table id="wd-wide-table" className="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>#</th><th>Col A</th><th>Col B</th><th>Col C</th><th>Col D</th>
+            <th>Col E</th><th>Col F</th><th>Col G</th><th>Col H</th><th>Col I</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>aa</td><td>bb</td><td>cc</td><td>dd</td><td>ee</td><td>ff</td><td>gg</td><td>hh</td><td>ii</td></tr>
+          <tr><td>2</td><td>aa</td><td>bb</td><td>cc</td><td>dd</td><td>ee</td><td>ff</td><td>gg</td><td>hh</td><td>ii</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {/* ================== C.3 Lists ================== */}
+  <section id="wd-section-bs-lists" className="mt-4">
+    <h2 id="wd-h-40">C.3 Lists</h2>
+
+    {/* Favorite movies styled list */}
+    <h3 id="wd-h-41">Favorite Movies</h3>
+    <ul id="wd-movie-list" className="list-group" style={{ maxWidth: 420 }}>
+      <li className="list-group-item">Interstellar</li>
+      <li className="list-group-item">Inception</li>
+      <li className="list-group-item">The Dark Knight</li>
+    </ul>
+
+    {/* Link list of books */}
+    <h3 id="wd-h-42" className="mt-3">Books (links)</h3>
+    <ul id="wd-book-links">
+      <li><a href="https://www.gutenberg.org/ebooks/1342" target="_blank">Pride and Prejudice</a></li>
+      <li><a href="https://www.gutenberg.org/ebooks/1661" target="_blank">The Adventures of Sherlock Holmes</a></li>
+      <li><a href="https://www.gutenberg.org/ebooks/5200" target="_blank">Metamorphosis</a></li>
+    </ul>
+  </section>
+
+  {/* ================== C.4 Forms (simple + responsive) ================== */}
+  <section id="wd-section-bs-forms" className="mt-4">
+    <h2 id="wd-h-43">C.4 Forms</h2>
+
+    {/* Simple inputs */}
+    <form id="wd-form-simple" className="mb-3">
+      <div className="mb-2">
+        <label htmlFor="wd-email" className="form-label">Email</label>
+        <input id="wd-email" type="email" className="form-control" placeholder="you@northeastern.edu" />
+      </div>
+      <div className="mb-2">
+        <label htmlFor="wd-msg" className="form-label">Message</label>
+        <textarea id="wd-msg" className="form-control" rows={3} placeholder="Write something..." />
+      </div>
+      <div className="mb-2">
+        <label htmlFor="wd-select" className="form-label">Topic</label>
+        <select id="wd-select" className="form-select">
+          <option>General</option><option>Homework</option><option>Project</option>
+        </select>
+      </div>
+
+      {/* switches & slider */}
+      <div className="form-check form-switch mb-2">
+        <input id="wd-switch" className="form-check-input" type="checkbox" defaultChecked />
+        <label className="form-check-label" htmlFor="wd-switch">Subscribe</label>
+      </div>
+      <div className="mb-2">
+        <label htmlFor="wd-range" className="form-label">Satisfaction</label>
+        <input id="wd-range" type="range" className="form-range" />
+      </div>
+
+      {/* input group addons */}
+      <div className="input-group mb-2" style={{ maxWidth: 360 }}>
+        <span className="input-group-text">@</span>
+        <input type="text" className="form-control" placeholder="username" />
+        <span className="input-group-text">.edu</span>
+      </div>
+    </form>
+
+    {/* Responsive layout: horizontal on md+, stacked on xs/sm */}
+    <h3 id="wd-h-44">Responsive Form (horizontal on wide)</h3>
+    <form id="wd-form-responsive">
+      <div className="row mb-2">
+        <label htmlFor="wd-r-email" className="col-md-3 col-form-label">Email</label>
+        <div className="col-md-9">
+          <input id="wd-r-email" type="email" className="form-control" placeholder="example@northeastern.edu" />
+        </div>
+      </div>
+      <div className="row mb-2">
+        <label htmlFor="wd-r-pass" className="col-md-3 col-form-label">Password</label>
+        <div className="col-md-9">
+          <input id="wd-r-pass" type="password" className="form-control" />
+        </div>
+      </div>
+      <div className="row mb-2">
+        <div className="offset-md-3 col-md-9">
+          <button className="btn btn-primary btn-sm">Submit</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  {/* ================== C.5 Tabs and Pills ================== */}
+  <section id="wd-section-bs-tabs-pills" className="mt-4">
+    <h2 id="wd-h-45">C.5 Tabs and Pills</h2>
+
+    {/* Tabs (visual) */}
+    <ul className="nav nav-tabs" id="wd-tabs">
+      <li className="nav-item"><a className="nav-link active">Home</a></li>
+      <li className="nav-item"><a className="nav-link">Profile</a></li>
+      <li className="nav-item"><a className="nav-link">Contact</a></li>
+    </ul>
+    <div className="border border-top-0 p-3">This is the tab content (static for demo).</div>
+
+    {/* Pills as mini TOC (links) */}
+    <ul className="nav nav-pills gap-2 mt-3" id="wd-pills">
+      <li className="nav-item"><a className="nav-link" href="/labs/lab1">Lab 1</a></li>
+      <li className="nav-item"><a className="nav-link active" href="/labs/lab2">Lab 2</a></li>
+      <li className="nav-item"><a className="nav-link" href="/kambaz">Kambaz</a></li>
+      <li className="nav-item"><a className="nav-link" href="https://github.com" target="_blank">GitHub Repo</a></li>
+    </ul>
+  </section>
+
+  {/* ================== C.6 Card (stacking) ================== */}
+  <section id="wd-section-bs-card" className="mt-4 mb-5">
+    <h2 id="wd-h-46">C.6 Card</h2>
+    <div className="card" style={{ maxWidth: 420 }}>
+      <img src="https://placehold.co/600x300?text=Starship" className="card-img-top" alt="Starship" />
+      <div className="card-body">
+        <h4 className="card-title">Starship</h4>
+        <p className="card-text">A simple stacked card with image on top and text below.</p>
+        <a href="#" className="btn btn-outline-secondary btn-sm">Details</a>
+      </div>
+    </div>
+  </section>
+  
+        
+      
+
+
+
+
+  </div>
+  );
   
 }
