@@ -199,6 +199,45 @@ export default function Lab2() {
           <div className="col-9"><div className="wd-bs-cell">Main</div></div>
         </div>
       </section>
+
+      {/* ------- B.3 Bootstrap - Responsive: A, B, C, D -------- */}
+  <section id="wd-section-bs-responsive-abcd" className="mt-3">
+  <h2 id="wd-h-36">B.3 Bootstrap - Responsive (A/B/C/D)</h2>
+  {/* xs: stack; ≥sm: 2 per row; ≥lg: 4 per row */}
+  <div className="row g-2 text-center">
+    <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">A</div></div>
+    <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">B</div></div>
+    <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">C</div></div>
+    <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">D</div></div>
+  </div>
+  <p className="wd-note">Stacks on phones → 2-up on tablets → 4-up on laptops.</p>
+</section>
+
+  {/* ------- B.4 Bootstrap - Responsive: 1..12 -------- */}
+  <section id="wd-section-bs-responsive-1-12" className="mt-3">
+    <h2 id="wd-h-37">B.4 Bootstrap - Responsive (1..12)</h2>
+    {/* xs: stack; ≥sm: 2-up; ≥md: 3-up; ≥lg: 4-up; ≥xl: 6-up */}
+    <div className="row g-2 text-center">
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">1</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">2</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">3</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">4</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">5</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">6</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">7</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">8</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">9</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">10</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">11</div></div>
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"><div className="wd-bs-cell">12</div></div>
     </div>
-  );
+    <p className="wd-note">Resize the window to see 1..12 change rows at each breakpoint.</p>
+  </section>
+
+    </div>
+    );
+
+    
+
+  
 }
