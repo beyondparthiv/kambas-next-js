@@ -235,17 +235,6 @@ export default function Lab2() {
   </section>
 
 
-  {/* ================== B.3 Bootstrap – Responsive (A/B/C/D) ================== */}
-  <section id="wd-section-bs-responsive-abcd" className="mt-3">
-    <h2 id="wd-h-36">B.3 Bootstrap – Responsive (A/B/C/D)</h2>
-    {/* xs: stacked; ≥sm: 2 per row; ≥lg: 4 per row */}
-    <div className="row g-2 text-center">
-      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">A</div></div>
-      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">B</div></div>
-      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">C</div></div>
-      <div className="col-12 col-sm-6 col-lg-3"><div className="wd-bs-cell">D</div></div>
-    </div>
-  </section>
 
   {/* ================== B.4 Bootstrap – Responsive (1..12) ================== */}
   <section id="wd-section-bs-responsive-1-12" className="mt-3">
@@ -373,7 +362,7 @@ export default function Lab2() {
       </div>
       <div className="row mb-2">
         <div className="offset-md-3 col-md-9">
-          <button className="btn btn-primary btn-sm">Submit</button>
+          <button type="button" className="btn btn-primary btn-sm">Submit</button>
         </div>
       </div>
     </form>
