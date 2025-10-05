@@ -1,0 +1,147 @@
+/* =========================================================
+   Single CSS for Course area (shell + nav + pages)
+   Location: app/(Kambaz)/Courses/[cid]/index.css
+   ========================================================= */
+
+/* ---------- Shell ---------- */
+#wd-course-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #fff;
+}
+#wd-course-main {
+  flex: 1;
+  padding: 24px;
+}
+
+/* ---------- Course Navigation (left) ----------
+   White background, red links, active link has black left border and black text
+*/
+#wd-course-navigation {
+  width: 220px;
+  border-right: 1px solid #e5e5e5;
+  background: #fff;
+}
+#wd-course-navigation h4 { margin: 16px 16px 8px 16px; }
+#wd-course-navigation ul { list-style: none; padding: 0; margin: 0; }
+#wd-course-navigation li { border-left: 4px solid transparent; }
+#wd-course-navigation a {
+  display: block;
+  padding: 10px 16px;
+  color: #c00;                 /* red links (required) */
+  text-decoration: none;
+  background: #fff;            /* white background (required) */
+}
+#wd-course-navigation li.wd-active { border-left-color: #000; } /* active left border */
+#wd-course-navigation li.wd-active a {
+  color: #000;                 /* active link text black */
+  font-weight: 600;
+}
+/* optional hover */
+#wd-course-navigation li:hover { background: #f7f7f7; }
+
+/* ---------- HOME (no spacer column) ---------- */
+/* 2-column grid: Modules | Status (Status hides on smaller screens) */
+#wd-home-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;   /* Modules | Status */
+  gap: 16px;
+}
+#wd-home-modules, #wd-home-status { background: #fff; }
+#wd-home-status .card { border: 1px solid #e5e5e5; }
+
+@media (max-width: 992px) {
+  #wd-home-grid { grid-template-columns: 1fr; } /* Modules only */
+  #wd-home-status { display: none; }
+}
+
+/* ---------- MODULES ---------- */
+#wd-modules-toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.btn-grey, .btn-red {
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+.btn-grey { background: #eee; color: #000; border: 1px solid #ccc; }
+.btn-red  { background: #c00; color: #fff; border: 1px solid #a00; }
+
+#wd-publish-all { position: relative; display: inline-block; }
+#wd-publish-all > .btn-grey { cursor: default; }
+#wd-publish-menu {
+  position: absolute;
+  top: 34px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 240px;
+  display: none;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+#wd-publish-all:hover #wd-publish-menu { display: block; }
+#wd-publish-menu li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+#wd-publish-menu li:last-child { border-bottom: none; }
+
+.wd-module { border: 1px solid #ddd; margin-bottom: 12px; }
+.wd-module-title {
+  background: #f6f6f6;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.wd-lesson {
+  background: #fff;
+  border-left: 4px solid #28a745; /* green left border */
+  padding: 10px 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* ---------- ASSIGNMENTS ---------- */
+.wd-assignments-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.wd-search { position: relative; width: min(480px, 100%); }
+.wd-search input { width: 100%; padding-left: 34px; }
+.wd-search .wd-mag { position: absolute; left: 10px; top: 9px; opacity: 0.6; }
+
+.wd-assign-list { margin-top: 16px; }
+.wd-assign-item {
+  border-left: 4px solid #28a745;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+.wd-assign-title {
+  color: #0d6efd;
+  text-decoration: none;
+}
+.wd-assign-title:hover { text-decoration: underline; }
+
+/* ---------- EDITOR ---------- */
+#wd-editor h1 { margin-bottom: 12px; }
+
+/* ---------- PEOPLE ---------- */
+#wd-people table { width: 100%; border-collapse: collapse; }
+#wd-people th, #wd-people td {
+  border: 1px solid #e5e5e5;
+  padding: 8px 10px;
+  text-align: left;
+}
+#wd-people thead { background: #f6f6f6; }

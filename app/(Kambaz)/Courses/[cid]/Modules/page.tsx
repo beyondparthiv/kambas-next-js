@@ -1,80 +1,56 @@
+import Link from "next/link";
+import { FaCheckCircle, FaRegCircle, FaBan, FaTimesCircle } from "react-icons/fa";
+
 export default function Modules() {
   return (
-    <div id="wd-modules">
-      {/* Top controls */}
-      <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 12 }}>
-        <button>Collapse All</button>
-        <button>View Progress</button>
-        <select aria-label="Publish All">
-          <option>Publish All</option>
-        </select>
-        <button>+ Module</button>
-      </div>
+    <div id="wd-course-shell">
+      <aside id="wd-course-navigation">
+        <h4>Course</h4>
+        <ul>
+          <li><Link href={`/Courses/5610/Home`}>Home</Link></li>
+          <li className="wd-active"><Link href={`/Courses/5610/Modules`}>Modules</Link></li>
+          <li><Link href={`https://piazza.com/`} target="_blank">Piazza</Link></li>
+          <li><Link href={`https://northeastern.zoom.us/`} target="_blank">Zoom</Link></li>
+          <li><Link href={`/Courses/5610/Assignments`}>Assignments</Link></li>
+          <li><Link href={`/Courses/5610/Quizzes`}>Quizzes</Link></li>
+          <li><Link href={`/Courses/5610/Grades`}>Grades</Link></li>
+          <li><Link href={`/Courses/5610/People`}>People</Link></li>
+        </ul>
+      </aside>
 
-      {/* Modules list */}
-      <ul>
-        <li className="wd-module">
-          <div className="wd-title">
-            Week 1, Lecture 1 - Course Introduction, Syllabus, Agenda
+      <main id="wd-course-main">
+        <div id="wd-modules">
+          <h1>Modules</h1>
+
+          <div id="wd-modules-toolbar">
+            <a href="#" className="btn-grey">Collapse All</a>
+            <a href="#" className="btn-grey">View Progress</a>
+            <a href="#" className="btn-red">+ Module</a>
+
+            <div id="wd-publish-all">
+              <a href="#" className="btn-grey">Publish All ▼</a>
+              <ul id="wd-publish-menu">
+                <li><FaCheckCircle /> Publish all</li>
+                <li><FaRegCircle /> Publish all items and modules</li>
+                <li><FaBan /> Unpublish all</li>
+                <li><FaTimesCircle /> Unpublish all modules</li>
+              </ul>
+            </div>
           </div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content" style={{ listStyleType: "square" }}>
-                <li className="wd-content-item">Introduction to the course</li>
-                <li className="wd-content-item">Learn what is Web Development</li>
-              </ul>
-            </li>
 
-            <li className="wd-lesson">
-              <span className="wd-title">READING</span>
-              <ul className="wd-content" style={{ listStyleType: "square" }}>
-                <li className="wd-content-item">
-                  Full Stack Developer - Chapter 1 - Introduction
-                </li>
-                <li className="wd-content-item">
-                  Full Stack Developer - Chapter 2 - Creating User
-                </li>
-              </ul>
-            </li>
-
-            <li className="wd-lesson">
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content" style={{ listStyleType: "square" }}>
-                <li className="wd-content-item">Introduction to Web Development</li>
-                <li className="wd-content-item">Creating an HTTP server with Node.js</li>
-                <li className="wd-content-item">Creating a React Application</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-
-        <li className="wd-module" style={{ marginTop: 12 }}>
-          <div className="wd-title">
-            Week 1, Lecture 2 - Formatting User Interfaces with HTML
+          <div className="wd-module">
+            <div className="wd-module-title"><span>Week 1</span><span>⋮</span></div>
+            <div className="wd-lesson">Welcome to Course</div>
+            <div className="wd-lesson">Syllabus</div>
           </div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content" style={{ listStyleType: "square" }}>
-                <li className="wd-content-item">
-                  Learn how to create user interfaces with HTML
-                </li>
-                <li className="wd-content-item">Deploy the assignment to Netlify</li>
-              </ul>
-            </li>
 
-            <li className="wd-lesson">
-              <span className="wd-title">SLIDES</span>
-              <ul className="wd-content" style={{ listStyleType: "square" }}>
-                <li className="wd-content-item">Introduction to HTML and the DOM</li>
-                <li className="wd-content-item">Formatting Web content with Headings</li>
-                <li className="wd-content-item">Formatting content with Lists and Tables</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
+          <div className="wd-module">
+            <div className="wd-module-title"><span>Week 2</span><span>⋮</span></div>
+            <div className="wd-lesson">Next.js Setup</div>
+            <div className="wd-lesson">CSS Selectors</div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
