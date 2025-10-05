@@ -1,14 +1,20 @@
-import Link from "next/link";
+"use client";
+import { useRouter } from "next/navigation";
+
 export default function Signin() {
- return (
-   <div>
-      <h3>Sign in</h3>
-      <input placeholder="username"/> <br />
-      <input placeholder="password" type="password" />
-        <br />
-      <Link href="/Dashboard">
-         Sign in </Link><br />
-      <Link href="Signup">
-         Sign up </Link>
+  const router = useRouter();
+  return (
+    <div className="container py-4">
+      <h1>Sign in</h1>
+      <div className="mb-3">
+        <label className="form-label">Email</label>
+        <input className="form-control" />
+      </div>
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input type="password" className="form-control" />
+      </div>
+      <button className="btn btn-danger" onClick={() => router.push("/Account/Profile")}>Sign in</button>
     </div>
-);}
+  );
+}
