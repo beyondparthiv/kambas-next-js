@@ -1,11 +1,14 @@
 // app/(Kambaz)/layout.tsx
+import "./index.css";
 import Navigation from "./Navigation";
 
 export default function KanbasLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
+    <div id="wd-kanbas-shell">
       <Navigation />
-      <main style={{ flex: 1, padding: "24px" }}>{children}</main>
+      <main id="wd-kanbas-main">
+        {children}
+      </main>
     </div>
   );
 }
