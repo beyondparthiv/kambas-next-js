@@ -1,0 +1,58 @@
+/* app/labs/index.css */
+/* ---- Shell ---- */
+#wd-labs-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #fff;
+}
+#wd-labs-toc {
+  width: 240px;
+  border-right: 1px solid #e5e5e5;
+  background: #fff;
+}
+#wd-labs-main {
+  flex: 1;
+  padding: 24px;
+}
+
+/* ---- TOC (left nav) ---- */
+.wd-toc { padding: 16px; }
+.wd-toc-title {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+.wd-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wd-toc-list li { margin: 6px 0; }
+.wd-toc-list a {
+  color: #c00;                 /* Canvas red */
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.wd-toc-list a:hover { background: #f7f7f7; color: #000; }
+.wd-toc-sep {
+  height: 1px;
+  background: #eee;
+  margin: 12px 0;
+}
+
+/* ---- Landing tweaks ---- */
+#wd-labs-landing h1 { margin-bottom: 8px; }
+#wd-labs-landing h3 { margin: 18px 0 8px; }
+#wd-labs-landing ul { margin: 0 0 12px 0; padding-left: 18px; }
+#wd-labs-landing li { margin: 6px 0; }
+#wd-labs-landing a { color: #0d6efd; text-decoration: none; }
+#wd-labs-landing a:hover { text-decoration: underline; }
+
+/* Optional card */
+.wd-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+}

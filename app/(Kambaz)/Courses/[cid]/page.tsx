@@ -1,7 +1,6 @@
+// app/(Kambaz)/Courses/page.tsx
 import { redirect } from "next/navigation";
-
-export default async function CoursesPage({ params, }:
-   { params: Promise<{ cid: string }>; }) {
-  const { cid } = await params;
-  redirect(`/Courses/${cid}/Home`);
+export default function CoursesLanding() {
+  redirect("/Courses/5610/Home");
+  return null;
 }

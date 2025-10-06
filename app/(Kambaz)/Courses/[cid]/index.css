@@ -145,3 +145,29 @@
   text-align: left;
 }
 #wd-people thead { background: #f6f6f6; }
+
+
+/* ---------- ASSIGNMENT DETAILS ---------- */
+#wd-assignment .wd-assign-details {
+  border-left: 4px solid #28a745;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  padding: 12px;
+}
+
+#wd-assignment .wd-assign-meta {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  column-gap: 8px;
+  row-gap: 6px;
+  margin: 8px 0 0 0;
+}
+
+#wd-assignment .wd-assign-meta dt {
+  color: #6c757d; /* muted label */
+  font-weight: 500;
+}
+
+#wd-assignment .wd-assign-meta dd {
+  margin: 0;
+}
