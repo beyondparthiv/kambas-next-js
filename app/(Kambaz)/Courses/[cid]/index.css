@@ -1,173 +1,207 @@
 /* =========================================================
-   Single CSS for Course area (shell + nav + pages)
-   Location: app/(Kambaz)/Courses/[cid]/index.css
+   Course CSS (Home + Modules + Nav)
+   Path: app/(Kambaz)/Courses/[cid]/index.css
    ========================================================= */
 
 /* ---------- Shell ---------- */
-#wd-course-shell {
-  display: flex;
-  min-height: 100vh;
-  background: #fff;
-}
-#wd-course-main {
-  flex: 1;
-  padding: 24px;
-}
+#wd-course-shell { display: flex; min-height: 100vh; background: #fff; }
+#wd-course-main  { flex: 1; padding: 24px; }
 
-/* ---------- Course Navigation (left) ----------
-   White background, red links, active link has black left border and black text
-*/
-#wd-course-navigation {
-  width: 220px;
-  border-right: 1px solid #e5e5e5;
-  background: #fff;
-}
-#wd-course-navigation h4 { margin: 16px 16px 8px 16px; }
+/* ---------- Left Course Navigation (Canvas look) ---------- */
+#wd-course-navigation { width: 220px; border-right: 1px solid #e5e5e5; background: #fff; }
+#wd-course-navigation h4 { margin: 16px 16px 8px; }
 #wd-course-navigation ul { list-style: none; padding: 0; margin: 0; }
 #wd-course-navigation li { border-left: 4px solid transparent; }
 #wd-course-navigation a {
-  display: block;
-  padding: 10px 16px;
-  color: #c00;                 /* red links (required) */
-  text-decoration: none;
-  background: #fff;            /* white background (required) */
+  display: block; padding: 10px 16px; color: #c00; text-decoration: none; background: #fff;
 }
-#wd-course-navigation li.wd-active { border-left-color: #000; } /* active left border */
-#wd-course-navigation li.wd-active a {
-  color: #000;                 /* active link text black */
-  font-weight: 600;
-}
-/* optional hover */
+#wd-course-navigation li.wd-active { border-left-color: #000; }
+#wd-course-navigation li.wd-active a { color: #000; font-weight: 600; }
 #wd-course-navigation li:hover { background: #f7f7f7; }
 
-/* ---------- HOME (no spacer column) ---------- */
-/* 2-column grid: Modules | Status (Status hides on smaller screens) */
+/* =========================================================
+   HOME
+   ========================================================= */
+
+/* 2-column layout: Modules | Status (hide status on small screens) */
 #wd-home-grid {
   display: grid;
-  grid-template-columns: 2fr 1.2fr;   /* Modules | Status */
+  grid-template-columns: 2fr 1.05fr;
   gap: 16px;
 }
-#wd-home-modules, #wd-home-status { background: #fff; }
-#wd-home-status .card { border: 1px solid #e5e5e5; }
-
 @media (max-width: 992px) {
-  #wd-home-grid { grid-template-columns: 1fr; } /* Modules only */
+  #wd-home-grid { grid-template-columns: 1fr; }
   #wd-home-status { display: none; }
 }
 
-/* ---------- MODULES ---------- */
+/* ---------- Toolbar (same used on Modules page) ---------- */
 #wd-modules-toolbar {
   display: flex;
+  align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
   flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 .btn-grey, .btn-red {
-  text-decoration: none;
   display: inline-block;
   padding: 6px 10px;
   border-radius: 4px;
   line-height: 1.2;
+  text-decoration: none;
+  border: 1px solid transparent;
+  font-size: 14px;
 }
-.btn-grey { background: #eee; color: #000; border: 1px solid #ccc; }
-.btn-red  { background: #c00; color: #fff; border: 1px solid #a00; }
+.btn-grey {
+  background: #f5f6f7;
+  border-color: #cfd4d9;
+  color: #3f3f3f;
+}
+.btn-red  { background: #c00; border-color: #a00; color: #fff; }
 
+/* Publish All dropdown (hover to show) */
 #wd-publish-all { position: relative; display: inline-block; }
 #wd-publish-all > .btn-grey { cursor: default; }
 #wd-publish-menu {
-  position: absolute;
-  top: 34px;
-  right: 0;
-  background: #fff;
-  border: 1px solid #ddd;
-  width: 240px;
-  display: none;
-  z-index: 10;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  position: absolute; top: 34px; right: 0;
+  width: 240px; background: #fff; border: 1px solid #ddd;
+  display: none; z-index: 10; box-shadow: 0 2px 6px rgba(0,0,0,.08);
 }
 #wd-publish-all:hover #wd-publish-menu { display: block; }
 #wd-publish-menu li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-bottom: 1px solid #f0f0f0;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px; border-bottom: 1px solid #f0f0f0;
 }
 #wd-publish-menu li:last-child { border-bottom: none; }
 
-.wd-module { border: 1px solid #ddd; margin-bottom: 12px; }
+/* ---------- MODULE LIST (used on Home + Modules) ---------- */
+.wd-module {
+  border: 1px solid #cfd4d9;
+  margin-bottom: 14px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
 .wd-module-title {
-  background: #f6f6f6;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
+  background: #e9ecef;           /* light gray header like Canvas */
+  padding: 10px 12px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 600;
+  color: #404040;
+  border-bottom: 1px solid #d8dde3;
 }
 .wd-lesson {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 12px;
   background: #fff;
-  border-left: 4px solid #28a745; /* green left border */
-  padding: 10px 12px;
   border-top: 1px solid #f0f0f0;
+  position: relative;
+}
+.wd-lesson::before {               /* thin green line at far left */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #2ea043;
 }
 
-/* ---------- ASSIGNMENTS ---------- */
+/* Optional right-side tiny icons spacing (if you render any) */
+.wd-lesson .wd-actions { display: flex; gap: 10px; opacity: .85; }
+
+/* ---------- Course Status panel (right column) ---------- */
+#wd-home-status .card { border: 1px solid #e5e5e5; border-radius: 6px; }
+#wd-home-status .card-body { padding: 12px; }
+#wd-home-status .card-title { font-size: 18px; margin: 0 0 10px; }
+#wd-status-actions { display: grid; gap: 8px; }
+#wd-status-actions .btn-slate {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px;
+  background: #eef1f4;
+  border: 1px solid #d6dbe0;
+  border-radius: 6px;
+  color: #2b2b2b; text-decoration: none;
+}
+#wd-status-actions .btn-green {
+  background: #1f7a39; color: #fff; border: 1px solid #18612d;
+  padding: 6px 10px; border-radius: 4px;
+}
+#wd-status-actions .btn-grey {
+  background: #f5f6f7; color: #3f3f3f; border: 1px solid #cfd4d9;
+}
+
+/* =========================================================
+   MODULES PAGE
+   ========================================================= */
+
+#wd-modules h1 { margin-bottom: 12px; }
+
+/* reuse toolbar + module styles above */
+
+/* make inner list max width similar to Canvas */
+#wd-modules .wd-module,
+#wd-home-modules .wd-module { max-width: 880px; }
+
+/* =========================================================
+   ASSIGNMENTS (unchanged, but keep consistent) 
+   ========================================================= */
 .wd-assignments-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; flex-wrap: wrap;
 }
 .wd-search { position: relative; width: min(480px, 100%); }
 .wd-search input { width: 100%; padding-left: 34px; }
-.wd-search .wd-mag { position: absolute; left: 10px; top: 9px; opacity: 0.6; }
+.wd-search .wd-mag { position: absolute; left: 10px; top: 9px; opacity: .6; }
 
 .wd-assign-list { margin-top: 16px; }
 .wd-assign-item {
-  border-left: 4px solid #28a745;
+  border-left: 4px solid #2ea043;
   padding: 10px 12px;
   margin-bottom: 10px;
   background: #fff;
+  max-width: 880px;
 }
-.wd-assign-title {
-  color: #0d6efd;
-  text-decoration: none;
-}
+.wd-assign-title { color: #0d6efd; text-decoration: none; }
 .wd-assign-title:hover { text-decoration: underline; }
 
-/* ---------- EDITOR ---------- */
-#wd-editor h1 { margin-bottom: 12px; }
-
-/* ---------- PEOPLE ---------- */
-#wd-people table { width: 100%; border-collapse: collapse; }
+/* =========================================================
+   PEOPLE (table simple)
+   ========================================================= */
+#wd-people table { width: 100%; border-collapse: collapse; max-width: 880px; }
 #wd-people th, #wd-people td {
-  border: 1px solid #e5e5e5;
-  padding: 8px 10px;
-  text-align: left;
+  border: 1px solid #e5e5e5; padding: 8px 10px; text-align: left;
 }
 #wd-people thead { background: #f6f6f6; }
 
+/* People table tweaks to match the screenshot */
+#wd-people-table table { max-width: 100%; }
+#wd-people-table th { font-weight: 700; }
+#wd-people-table td, #wd-people-table th { vertical-align: middle; }
+#wd-people-table .wd-full-name { display: flex; align-items: center; }
 
-/* ---------- ASSIGNMENT DETAILS ---------- */
-#wd-assignment .wd-assign-details {
-  border-left: 4px solid #28a745;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  padding: 12px;
+
+
+
+/* Appended lastly */
+
+/* icons on module headers & lessons */
+.wd-drag { color: #6b7280; font-size: 16px; margin-right: 8px; }
+.wd-actions { display: flex; align-items: center; gap: 12px; }
+.wd-ok { color: #2ea043; font-size: 16px; }             /* green check */
+.wd-kebab { color: #6b7280; font-size: 16px; }           /* three dots */
+.wd-plus { color: #2b2b2b; font-size: 16px; }            /* + icon */
+
+/* keep the header bar height & spacing close to Canvas */
+.wd-module-title { min-height: 42px; }
+.wd-lesson { min-height: 46px; }
+
+/* Keep icons/text on ONE LINE inside the Publish All button */
+#wd-publish-all > .btn-grey {
+  display: inline-flex;          /* was inline-block */
+  align-items: center;
+  gap: 6px;                      /* space between text, check, caret */
+  line-height: 1.2;
 }
 
-#wd-assignment .wd-assign-meta {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  column-gap: 8px;
-  row-gap: 6px;
-  margin: 8px 0 0 0;
+/* Make sure SVG icons don’t become block-level */
+#wd-modules-toolbar svg {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-#wd-assignment .wd-assign-meta dt {
-  color: #6c757d; /* muted label */
-  font-weight: 500;
-}
-
-#wd-assignment .wd-assign-meta dd {
-  margin: 0;
-}
+/* Tiny caret sizing so it sits nicely */
+.wd-caret { font-size: 12px; line-height: 1; }

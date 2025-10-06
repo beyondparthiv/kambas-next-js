@@ -50,30 +50,45 @@
   display: block;
 }
 
-/* Dashboard cards */
-#wd-dashboard-courses {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-.wd-dashboard-course {
+/* ===== Dashboard (cards) ===== */
+#wd-dashboard { padding: 24px; background: #fff; }
+#wd-dashboard h1 { margin: 0 0 12px 0; }
+#wd-dashboard-published { margin-top: 8px; }
+
+.wd-course-card {
+  position: relative;
+  background: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,.03);
 }
-.wd-course-body {
-  padding: 12px;
-}
-.wd-dashboard-course-title {
-  color: #666;
-  margin: 0 0 12px 0;
-}
-.wd-course-btn {
+
+.wd-card-banner { height: 110px; }
+
+.wd-card-body { padding: 10px 12px 12px; }
+
+.wd-course-title {
+  font-weight: 600;
+  color: #0d6efd;
+  text-decoration: none;
   display: inline-block;
-  padding: 6px 10px;
-  border: 1px solid #c00;
-  color: #c00;/* =========================================================
+  margin-bottom: 6px;
+}
+.wd-course-title:hover { text-decoration: underline; }
+
+.wd-course-meta {
+  color: #6c757d;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* Responsive: ensure 1 column on very small screens when left rail hides */
+@media (max-width: 576px) {
+  #wd-dashboard .row > [class*="col-"] { width: 100%; }
+}
+
+/* =========================================================
    Kambaz (Canvas-like) - Phase 1 minimal CSS
    Location: app/(Kambaz)/kanbas.css
    ========================================================= */
@@ -214,9 +229,6 @@
   #wd-kanbas-main { padding: 16px; }
 }
 
-  text-decoration: none;
-  border-radius: 4px;
-}
 
 /* Landing and Labs simple spacing */
 #wd-landing, #wd-labs-landing {
@@ -236,3 +248,5 @@
 #wd-kanbas-navigation li:hover .wd-icon {
   color: #000;
 }
+
+
