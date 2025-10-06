@@ -3,11 +3,11 @@
    Path: app/(Kambaz)/Courses/[cid]/index.css
    ========================================================= */
 
-/* ---------- Shell ---------- */
+/* stuff for the whole page container */
 #wd-course-shell { display: flex; min-height: 100vh; background: #fff; }
 #wd-course-main  { flex: 1; padding: 24px; }
 
-/* ---------- Left Course Navigation (Canvas look) ---------- */
+/* The left sidebar thingy, looks like Canvas's nav */
 #wd-course-navigation { width: 220px; border-right: 1px solid #e5e5e5; background: #fff; }
 #wd-course-navigation h4 { margin: 16px 16px 8px; }
 #wd-course-navigation ul { list-style: none; padding: 0; margin: 0; }
@@ -23,7 +23,7 @@
    HOME
    ========================================================= */
 
-/* 2-column layout: Modules | Status (hide status on small screens) */
+/* two columns, modules on the left, status on the right, but only for big screens */
 #wd-home-grid {
   display: grid;
   grid-template-columns: 2fr 1.05fr;
@@ -31,10 +31,14 @@
 }
 @media (max-width: 992px) {
   #wd-home-grid { grid-template-columns: 1fr; }
-  #wd-home-status { display: none; }
+  #wd-home-status { display: none; } /* bye bye status panel on tiny screens */
 }
 
-/* ---------- Toolbar (same used on Modules page) ---------- */
+/* =========================================================
+   TOOLBARS AND BUTTONS
+   ========================================================= */
+
+/* The toolbar that shows up on Home and Modules */
 #wd-modules-toolbar {
   display: flex;
   align-items: center;
@@ -42,6 +46,8 @@
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
+
+/* styles for all the buttons, boring */
 .btn-grey, .btn-red {
   display: inline-block;
   padding: 6px 10px;
@@ -51,16 +57,24 @@
   border: 1px solid transparent;
   font-size: 14px;
 }
-.btn-grey {
+.btn-grey,
+#wd-status-actions .btn-grey { /* reusing the grey button style in the status panel */
   background: #f5f6f7;
   border-color: #cfd4d9;
   color: #3f3f3f;
 }
 .btn-red  { background: #c00; border-color: #a00; color: #fff; }
 
-/* Publish All dropdown (hover to show) */
+/*  Publish All dropdown thing */
 #wd-publish-all { position: relative; display: inline-block; }
-#wd-publish-all > .btn-grey { cursor: default; }
+#wd-publish-all > .btn-grey { cursor: default; } /* make the button not look clickable */
+#wd-publish-all > .btn-grey {
+  display: inline-flex; /* fix for icons and text on one line */
+  align-items: center;
+  gap: 6px; /* space between text, check, caret */
+  line-height: 1.2;
+}
+
 #wd-publish-menu {
   position: absolute; top: 34px; right: 0;
   width: 240px; background: #fff; border: 1px solid #ddd;
@@ -73,7 +87,11 @@
 }
 #wd-publish-menu li:last-child { border-bottom: none; }
 
-/* ---------- MODULE LIST (used on Home + Modules) ---------- */
+/* =========================================================
+   MODULES AND LESSONS (Home + Modules)
+   ========================================================= */
+
+/* The main module container, used everywhere */
 .wd-module {
   border: 1px solid #cfd4d9;
   margin-bottom: 14px;
@@ -81,32 +99,42 @@
   overflow: hidden;
   background: #fff;
 }
+/* The title bar of the module, gotta have a light gray header like Canvas */
 .wd-module-title {
-  background: #e9ecef;           /* light gray header like Canvas */
+  background: #e9ecef;
   padding: 10px 12px;
   display: flex; justify-content: space-between; align-items: center;
   font-weight: 600;
   color: #404040;
   border-bottom: 1px solid #d8dde3;
+  min-height: 42px; /* keep the header bar height consistent */
 }
+
+/* The individual lesson items */
 .wd-lesson {
   display: flex; align-items: center; justify-content: space-between;
   padding: 12px 12px;
   background: #fff;
   border-top: 1px solid #f0f0f0;
   position: relative;
+  min-height: 46px; /* keep the lesson row height consistent */
 }
-.wd-lesson::before {               /* thin green line at far left */
+.wd-lesson::before { /* thin green line at far left, very important */
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #2ea043;
 }
 
-/* Optional right-side tiny icons spacing (if you render any) */
+/* spacing for the icons on the right side of lessons, if you even use them */
 .wd-lesson .wd-actions { display: flex; gap: 10px; opacity: .85; }
 
-/* ---------- Course Status panel (right column) ---------- */
+/* =========================================================
+   COURSE STATUS PANEL (right column on Home)
+   ========================================================= */
+
 #wd-home-status .card { border: 1px solid #e5e5e5; border-radius: 6px; }
 #wd-home-status .card-body { padding: 12px; }
 #wd-home-status .card-title { font-size: 18px; margin: 0 0 10px; }
+
+/* the buttons inside the status panel */
 #wd-status-actions { display: grid; gap: 8px; }
 #wd-status-actions .btn-slate {
   display: flex; align-items: center; gap: 8px;
@@ -120,9 +148,6 @@
   background: #1f7a39; color: #fff; border: 1px solid #18612d;
   padding: 6px 10px; border-radius: 4px;
 }
-#wd-status-actions .btn-grey {
-  background: #f5f6f7; color: #3f3f3f; border: 1px solid #cfd4d9;
-}
 
 /* =========================================================
    MODULES PAGE
@@ -130,22 +155,22 @@
 
 #wd-modules h1 { margin-bottom: 12px; }
 
-/* reuse toolbar + module styles above */
-
-/* make inner list max width similar to Canvas */
+/* make inner list max width similar to what Canvas does, it's a good look */
 #wd-modules .wd-module,
 #wd-home-modules .wd-module { max-width: 880px; }
 
 /* =========================================================
-   ASSIGNMENTS (unchanged, but keep consistent) 
+   ASSIGNMENTS
    ========================================================= */
+
 .wd-assignments-toolbar {
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; flex-wrap: wrap;
 }
+/* search input box setup */
 .wd-search { position: relative; width: min(480px, 100%); }
 .wd-search input { width: 100%; padding-left: 34px; }
-.wd-search .wd-mag { position: absolute; left: 10px; top: 9px; opacity: .6; }
+.wd-search .wd-mag { position: absolute; left: 10px; top: 9px; opacity: .6; } /* little magnifying glass icon */
 
 .wd-assign-list { margin-top: 16px; }
 .wd-assign-item {
@@ -159,49 +184,37 @@
 .wd-assign-title:hover { text-decoration: underline; }
 
 /* =========================================================
-   PEOPLE (table simple)
+   PEOPLE (simple table)
    ========================================================= */
+
 #wd-people table { width: 100%; border-collapse: collapse; max-width: 880px; }
 #wd-people th, #wd-people td {
   border: 1px solid #e5e5e5; padding: 8px 10px; text-align: left;
 }
 #wd-people thead { background: #f6f6f6; }
 
-/* People table tweaks to match the screenshot */
+/* more table tweaks to make it look right */
 #wd-people-table table { max-width: 100%; }
 #wd-people-table th { font-weight: 700; }
 #wd-people-table td, #wd-people-table th { vertical-align: middle; }
 #wd-people-table .wd-full-name { display: flex; align-items: center; }
 
+/* =========================================================
+   ICONS AND TINY BITS
+   ========================================================= */
 
-
-
-/* Appended lastly */
-
-/* icons on module headers & lessons */
+/* icons on module headers & lessons, general icon styles */
 .wd-drag { color: #6b7280; font-size: 16px; margin-right: 8px; }
 .wd-actions { display: flex; align-items: center; gap: 12px; }
-.wd-ok { color: #2ea043; font-size: 16px; }             /* green check */
-.wd-kebab { color: #6b7280; font-size: 16px; }           /* three dots */
-.wd-plus { color: #2b2b2b; font-size: 16px; }            /* + icon */
+.wd-ok { color: #2ea043; font-size: 16px; } /* the green checkmark */
+.wd-kebab { color: #6b7280; font-size: 16px; } /* the three dots menu icon */
+.wd-plus { color: #2b2b2b; font-size: 16px; } /* the little plus icon */
 
-/* keep the header bar height & spacing close to Canvas */
-.wd-module-title { min-height: 42px; }
-.wd-lesson { min-height: 46px; }
-
-/* Keep icons/text on ONE LINE inside the Publish All button */
-#wd-publish-all > .btn-grey {
-  display: inline-flex;          /* was inline-block */
-  align-items: center;
-  gap: 6px;                      /* space between text, check, caret */
-  line-height: 1.2;
-}
-
-/* Make sure SVG icons don’t become block-level */
+/* make sure SVG icons don't break the layout */
 #wd-modules-toolbar svg {
   display: inline-block;
   vertical-align: middle;
 }
 
-/* Tiny caret sizing so it sits nicely */
+/* the tiny little caret arrow */
 .wd-caret { font-size: 12px; line-height: 1; }

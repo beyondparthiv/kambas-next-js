@@ -1,6 +1,4 @@
-/* app/(Kambaz)/kanbas.css */
 
-/* Shell */
 #wd-kanbas-shell {
   display: flex;
   min-height: 100vh;
@@ -11,11 +9,13 @@
   padding: 24px;
 }
 
-/* Left navigation (Canvas-like) */
+/* LEFT NAVIGATION */
 #wd-kanbas-navigation {
   width: 110px;
   background: #000;
   color: #fff;
+  text-align: center;
+  min-height: 100vh;
 }
 #wd-kanbas-navigation ul {
   list-style: none;
@@ -23,39 +23,99 @@
   margin: 0;
 }
 #wd-kanbas-navigation li {
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  margin: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15); /* Keep original separator for list */
 }
+
+/* Base link look (applies to all navigation links) */
 #wd-kanbas-navigation .wd-nav-link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 18px 8px;
   text-decoration: none;
+  padding: 12px 8px;
   color: #fff;
+  font-size: 14px;
+  line-height: 1.1;
+  gap: 6px;
 }
-#wd-kanbas-navigation .wd-nav-link .wd-icon {
+
+/* Icons within navigation */
+#wd-kanbas-navigation .wd-icon {
   font-size: 22px;
-  color: #c00; /* red icon */
+  color: #c00;
 }
-#wd-kanbas-navigation li.wd-active {
-  background: #fff; /* active link white */
-}
-#wd-kanbas-navigation li.wd-active .wd-nav-link {
-  color: #c00; /* red text on active */
-}
-#wd-nav-neu .wd-nav-link {
+
+/* NEU Logo item */
+#wd-nav-neu .wd-link-neu {
+  display: block;
+  padding: 14px 0 6px 0;
   color: #fff;
 }
 #wd-nav-neu img {
   display: block;
 }
 
-/* ===== Dashboard (cards) ===== */
+/* Active/Selected link state */
+#wd-kanbas-navigation li.wd-active,
+#wd-item-dashboard { 
+  background: #fff;
+}
+#wd-kanbas-navigation li.wd-active .wd-nav-link,
+#wd-kanbas-navigation li.wd-active .wd-icon,
+.wd-item-dashboard .wd-nav-link,
+.wd-item-dashboard .wd-icon {
+  color: #c00;
+}
+
+/* Specific item colors (redundant but kept for rubric matching) */
+/* Account: black background, white text & white icon */
+.wd-item-account .wd-nav-link,
+.wd-item-account .wd-icon {
+  color: #fff;
+}
+
+/* Others (Courses, Calendar, Inbox, Labs): black bg, white text, red icon (default) */
+/* No need for .wd-item-default as it's the base style */
+
+
+/* Hover effect for sidebar */
+#wd-kanbas-navigation li:hover {
+  background: #fff;
+}
+#wd-kanbas-navigation li:hover .wd-nav-link {
+  color: #000;
+}
+#wd-kanbas-navigation li:hover .wd-icon {
+  color: #000;
+}
+
+/* Optional separator line */
+.wd-sep div {
+  height: 1px;
+  opacity: 0.2;
+  background: #fff;
+  margin: 8px 16px;
+}
+
+/* DASHBOARD */
 #wd-dashboard { padding: 24px; background: #fff; }
 #wd-dashboard h1 { margin: 0 0 12px 0; }
-#wd-dashboard-published { margin-top: 8px; }
+#wd-dashboard-title,
+#wd-dashboard-published {
+  margin: 0 0 8px 0;
+}
 
-.wd-course-card {
+/* Course Card Grid */
+#wd-dashboard-courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Individual Course Card */
+.wd-course-card,
+.wd-dashboard-course {
   position: relative;
   background: #fff;
   border: 1px solid #e5e5e5;
@@ -66,7 +126,10 @@
 
 .wd-card-banner { height: 110px; }
 
-.wd-card-body { padding: 10px 12px 12px; }
+.wd-card-body,
+.wd-course-body {
+  padding: 10px 12px 12px;
+}
 
 .wd-course-title {
   font-weight: 600;
@@ -82,130 +145,12 @@
   font-size: 12px;
   line-height: 1.35;
 }
-
-/* Responsive: ensure 1 column on very small screens when left rail hides */
-@media (max-width: 576px) {
-  #wd-dashboard .row > [class*="col-"] { width: 100%; }
-}
-
-/* =========================================================
-   Kambaz (Canvas-like) - Phase 1 minimal CSS
-   Location: app/(Kambaz)/kanbas.css
-   ========================================================= */
-
-/* ---------- Shell layout ---------- */
-#wd-kanbas-shell {
-  display: flex;
-  min-height: 100vh;
-  background: #fff;
-}
-
-#wd-kanbas-main {
-  flex: 1;
-  padding: 24px;
-}
-
-/* ---------- Left Navigation (required rubric styles) ---------- */
-#wd-kanbas-navigation {
-  width: 110px;
-  background: #000;              /* black sidebar */
-  color: #fff;
-  text-align: center;
-  min-height: 100vh;
-}
-
-#wd-kanbas-navigation ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#wd-kanbas-navigation li {
-  margin: 6px 0;
-}
-
-/* NEU logo item */
-#wd-nav-neu .wd-link-neu {
-  display: block;
-  padding: 14px 0 6px 0;
-}
-
-/* Base link look */
-#wd-kanbas-navigation .wd-nav-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  padding: 12px 8px;
-  color: #fff;                   /* default text color for black items */
-  font-size: 14px;
-  line-height: 1.1;
-}
-
-#wd-kanbas-navigation .wd-icon {
-  font-size: 22px;
-  color: #c00;                   /* default icon for non-dashboard items: red */
-}
-
-/* --- Required color rules per rubric --- */
-/* Account: black background, white text & white icon */
-.wd-item-account {
-  background: #000;
-}
-.wd-item-account .wd-nav-link { color: #fff; }
-.wd-item-account .wd-icon     { color: #fff; }
-
-/* Dashboard: white background, red text & red icon */
-.wd-item-dashboard {
-  background: #fff;
-}
-.wd-item-dashboard .wd-nav-link { color: #c00; }
-.wd-item-dashboard .wd-icon     { color: #c00; }
-
-/* Others (Courses, Calendar, Inbox, Labs): black bg, white text, red icon */
-.wd-item-default {
-  background: #000;
-}
-.wd-item-default .wd-nav-link { color: #fff; }
-.wd-item-default .wd-icon     { color: #c00; }
-
-/* Optional separator line (for any extra items below required ones) */
-.wd-sep div {
-  height: 1px;
-  opacity: 0.2;
-  background: #fff;
-  margin: 8px 16px;
-}
-
-/* ---------- Dashboard cards (Phase 1) ---------- */
-#wd-dashboard-title,
-#wd-dashboard-published {
-  margin: 0 0 8px 0;
-}
-
-#wd-dashboard-courses {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-
-.wd-dashboard-course {
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;             /* solid or image bg allowed */
-}
-
-.wd-course-body {
-  padding: 12px;
-}
-
 .wd-dashboard-course-title {
   color: #666;
   margin: 0 0 12px 0;
 }
 
+/* Course Action Button (on card) */
 .wd-course-btn {
   display: inline-block;
   padding: 6px 10px;
@@ -215,38 +160,20 @@
   border-radius: 4px;
 }
 
-/* ---------- Labs landing (simple spacing) ---------- */
+/* LANDING AND LABS SPACING */
 #wd-labs-landing,
 #wd-landing {
   padding: 24px;
 }
 
-/* ---------- Small responsive tweaks ---------- */
+/* RESPONSIVE TWEAKS */
+@media (max-width: 576px) {
+  #wd-dashboard .row > [class*="col-"] { width: 100%; }
+}
+
 @media (max-width: 480px) {
   #wd-kanbas-navigation { width: 92px; }
   #wd-kanbas-navigation .wd-nav-link { font-size: 13px; padding: 10px 4px; }
   #wd-kanbas-navigation .wd-icon { font-size: 20px; }
   #wd-kanbas-main { padding: 16px; }
 }
-
-
-/* Landing and Labs simple spacing */
-#wd-landing, #wd-labs-landing {
-  padding: 24px;
-}
-
-
-/* ---------- Hover effect for sidebar ---------- */
-#wd-kanbas-navigation li:hover {
-  background: #fff;
-}
-
-#wd-kanbas-navigation li:hover .wd-nav-link {
-  color: #000;
-}
-
-#wd-kanbas-navigation li:hover .wd-icon {
-  color: #000;
-}
-
-

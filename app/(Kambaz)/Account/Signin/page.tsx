@@ -1,20 +1,15 @@
-"use client";
-import { useRouter } from "next/navigation";
+import AccountNav from "../Navigation";
 
-export default function Signin() {
-  const router = useRouter();
+export default function SigninPage() {
   return (
-    <div className="container py-4">
-      <h1>Sign in</h1>
-      <div className="mb-3">
-        <label className="form-label">Email</label>
-        <input className="form-control" />
-      </div>
-      <div className="mb-3">
-        <label className="form-label">Password</label>
-        <input type="password" className="form-control" />
-      </div>
-      <button className="btn btn-danger" onClick={() => router.push("/Account/Profile")}>Sign in</button>
+    <div id="wd-account-shell">
+      <AccountNav active="Signin" />
+      <main id="wd-account-main" className="wd-auth">
+        <h1>Signin</h1>
+        <input className="form-control" placeholder="username" />
+        <input className="form-control" placeholder="password" type="password" />
+        <button className="btn btn-primary">Signin</button>
+      </main>
     </div>
   );
 }

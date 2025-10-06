@@ -1,0 +1,21 @@
+/* Account pages: two-column content area  */
+#wd-account-shell { display: grid; grid-template-columns: 220px 1fr; gap: 16px; padding: 24px; }
+@media (max-width: 900px) { #wd-account-shell { grid-template-columns: 1fr; } }
+
+/* Left column list (styled like course nav) */
+#wd-account-navigation { border-right: 1px solid #e5e5e5; background: #fff; }
+#wd-account-navigation h4 { margin: 0 0 10px 0; }
+#wd-account-navigation ul { list-style: none; margin: 0; padding: 0; }
+#wd-account-navigation li { border-left: 4px solid transparent; }
+#wd-account-navigation a {
+  display: block; padding: 10px 16px; color: #c00; text-decoration: none; background: #fff;
+}
+#wd-account-navigation li.wd-active { border-left-color: #000; }
+#wd-account-navigation li.wd-active a { color: #000; font-weight: 600; }
+#wd-account-navigation li:hover { background: #f7f7f7; }
+
+/* Right content */
+#wd-account-main { padding-left: 8px; }
+.wd-auth h1 { margin: 0 0 12px 0; }
+.wd-auth .form-control { margin-bottom: 12px; }
+.wd-auth .btn { width: 100%; }

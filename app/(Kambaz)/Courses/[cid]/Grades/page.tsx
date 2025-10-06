@@ -1,4 +1,4 @@
-// app/(Kambaz)/Courses/5610/Grades/page.tsx
+
 import Link from "next/link";
 
 export default function Grades() {

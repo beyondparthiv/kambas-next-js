@@ -1,4 +1,4 @@
-// app/(Kambaz)/Courses/[cid]/Navigation.tsx
+
 import Link from "next/link";
 
 export default function CourseNavigation() {

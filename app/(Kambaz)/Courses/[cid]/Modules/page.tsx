@@ -157,8 +157,6 @@ export default function Modules({ params }: { params: { cid: string } }) {
           </div>
         </div>
       </main>
-
-      {/* Right status panel on Home screen only; skip here or include if you also render it on Modules */}
     </div>
   );
 }

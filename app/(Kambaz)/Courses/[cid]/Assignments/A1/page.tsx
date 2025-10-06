@@ -1,97 +1,47 @@
-export default function AssignmentEditor() {
+import Link from "next/link";
+
+export default function A1({ params }: { params: { cid: string } }) {
+  const { cid } = params;
+
   return (
-    <div id="wd-assignments-editor">
-      <h2>Assignment Editor</h2>
+    <div id="wd-course-shell">
+      <aside id="wd-course-navigation">
+        <h4>Course</h4>
+        <ul>
+          <li><Link href={`/Courses/${cid}/Home`}>Home</Link></li>
+          <li><Link href={`/Courses/${cid}/Modules`}>Modules</Link></li>
+          <li><Link href="https://piazza.com/" target="_blank">Piazza</Link></li>
+          <li><Link href="https://northeastern.zoom.us/" target="_blank">Zoom</Link></li>
+          <li className="wd-active"><Link href={`/Courses/${cid}/Assignments`}>Assignments</Link></li>
+          <li><Link href={`/Courses/${cid}/Quizzes`}>Quizzes</Link></li>
+          <li><Link href={`/Courses/${cid}/Grades`}>Grades</Link></li>
+          <li><Link href={`/Courses/${cid}/People`}>People</Link></li>
+        </ul>
+      </aside>
 
-      <form id="wd-assignment-form">
-        <div>
-          <label htmlFor="wd-name">Assignment Name</label><br />
-          <input id="wd-name" name="name" defaultValue="A1 - ENV + HTML" />
+      <main id="wd-course-main">
+        <div id="wd-assignment">
+          <h1 className="mb-2">A2 — Kambaz + Labs</h1>
+          <div className="wd-assign-details">
+            <p className="mb-2">
+              Implement Kambaz navigation, dashboard, and course pages following the rubric. Include lab landing links.
+            </p>
+
+            <dl className="wd-assign-meta">
+              <dt>Due</dt><dd>Oct 05 at 11:59pm</dd>
+              <dt>Available</dt><dd>Sep 28 — Oct 06</dd>
+              <dt>Points</dt><dd>375</dd>
+              <dt>Group</dt><dd>ASSIGNMENTS</dd>
+              <dt>Submission</dt><dd>Online (URL)</dd>
+            </dl>
+
+            <div className="mt-3 d-flex gap-2">
+              <Link href={`/Courses/${cid}/Assignments`} className="btn btn-secondary">Back</Link>
+              <Link href={`/Courses/${cid}/Assignments/Editor`} className="btn btn-danger">Edit Assignment</Link>
+            </div>
+          </div>
         </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-description">Description</label><br />
-          <textarea id="wd-description" name="description" rows={4}>
-The assignment is available online Submit a link to the landing page of
-          </textarea>
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-points">Points</label><br />
-          <input id="wd-points" name="points" type="number" defaultValue={100} />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-display-grade">Display Grade as</label><br />
-          <select id="wd-display-grade" defaultValue="points">
-            <option value="points">Points</option>
-            <option value="percentage">Percentage</option>
-            <option value="complete_incomplete">Complete / Incomplete</option>
-            <option value="letter">Letter Grade</option>
-          </select>
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-submission-type">Submission Type</label><br />
-          <select id="wd-submission-type" defaultValue="online">
-            <option value="online">Online</option>
-            <option value="on_paper">On Paper</option>
-            <option value="external_tool">External Tool</option>
-          </select>
-        </div>
-
-        <br />
-
-        <fieldset>
-          <legend>Online Entry Options</legend>
-          <label><input type="checkbox" defaultChecked /> Text Entry</label><br />
-          <label><input type="checkbox" /> Website URL</label><br />
-          <label><input type="checkbox" /> Media Recordings</label><br />
-          <label><input type="checkbox" /> Student Annotation</label><br />
-          <label><input type="checkbox" /> File Uploads</label>
-        </fieldset>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-assign-to">Assign to</label><br />
-          <input id="wd-assign-to" defaultValue="Everyone" />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-due-date">Due</label><br />
-          <input id="wd-due-date" type="date" defaultValue="2025-10-01" />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-available-from">Available from</label><br />
-          <input id="wd-available-from" type="date" defaultValue="2025-09-25" />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="wd-until">Until</label><br />
-          <input id="wd-until" type="date" defaultValue="2025-10-15" />
-        </div>
-
-        <br />
-
-        <button type="submit" id="wd-save">Save</button>
-      </form>
+      </main>
     </div>
   );
 }
-  

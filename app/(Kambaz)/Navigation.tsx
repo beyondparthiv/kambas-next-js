@@ -43,10 +43,10 @@ export default function Navigation() {
           </Link>
         </li>
 
-        <li className="wd-item-required wd-item-dashboard">
-          <Link href="/Dashboard" className="wd-nav-link">
+        <li className="wd-active">
+          <Link className="wd-nav-link" href="/Dashboard">
             <FaTachometerAlt className="wd-icon" />
-            <span>Dashboard</span>
+            <span className="wd-label">Dashboard</span>
           </Link>
         </li>
 
@@ -78,7 +78,7 @@ export default function Navigation() {
           </Link>
         </li>
 
-        {/* --- Optional extras (after required items) --- */}
+        {/* ---  Extra features added by me (after required items) --- */}
         <li className="wd-sep" aria-hidden="true"><div /></li>
 
         <li className="wd-item-default">

@@ -1,13 +1,15 @@
-import React from "react";
-import Link from "next/link";
-export default function Signup() {
+import AccountNav from "../Navigation";
+
+export default function SignupPage() {
   return (
-    <div>
-      <h3>Sign up</h3>
-      <input placeholder="Username" /><br/>
-      <input placeholder="password" type="password" /><br/>
-      <input placeholder="verify password" type="password" /><br/>
-      <Link href="Profile" > Sign up </Link><br />
-      <Link href="Signin" >Sign in</Link>
+    <div id="wd-account-shell">
+      <AccountNav active="Signup" />
+      <main id="wd-account-main" className="wd-auth">
+        <h1>Signup</h1>
+        <input className="form-control" placeholder="username" />
+        <input className="form-control" placeholder="password" type="password" />
+        <button className="btn btn-primary">Signup</button>
+      </main>
     </div>
-);}
+  );
+}

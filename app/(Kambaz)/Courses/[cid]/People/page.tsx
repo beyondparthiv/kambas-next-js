@@ -1,4 +1,4 @@
-// app/(Kambaz)/Courses/[cid]/People/page.tsx
+
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -6,8 +6,8 @@ export default function People({ params }: { params: { cid: string } }) {
   const { cid } = params;
 
   return (
-    <div id="wd-course-shell">{/* open: shell */}
-      {/* Left course navigation */}
+    <div id="wd-course-shell">
+      
       <aside id="wd-course-navigation">
         <h4>Course</h4>
         <ul>
@@ -22,11 +22,10 @@ export default function People({ params }: { params: { cid: string } }) {
         </ul>
       </aside>
 
-      {/* Main */}
-      <main id="wd-course-main">{/* open: main */}
+      <main id="wd-course-main">
         <h1>People</h1>
 
-        <div id="wd-people-table">{/* open: table wrapper */}
+        <div id="wd-people-table">
           <table className="table table-striped align-middle">
             <thead>
               <tr>
@@ -118,8 +117,8 @@ export default function People({ params }: { params: { cid: string } }) {
               </tr>
             </tbody>
           </table>
-        </div>{/* close: table wrapper */}
-      </main>{/* close: main */}
-    </div>/* close: shell */
+        </div>
+      </main>
+    </div>
   );
 }
