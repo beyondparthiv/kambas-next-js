@@ -58,6 +58,7 @@ export default function Home() {
             </div>
           )}
         </section>
+        
 
         <aside id="wd-home-status">
           <div className="card">
