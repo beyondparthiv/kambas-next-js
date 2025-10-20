@@ -1,23 +1,68 @@
-// app/labs/TOC.tsx
+"use client";
+
+import { Nav, NavItem, NavLink } from "react-bootstrap";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function TOC() {
+  const pathname = (usePathname() || "").toLowerCase();
+
+  // helpers to mark active tab while keeping your exact hrefs unchanged
+  const isActive = (end: string) => pathname.endsWith(end.toLowerCase());
+
   return (
-    <nav className="wd-toc">
-      <h4 className="wd-toc-title">Labs</h4>
-      <ul className="wd-toc-list">
-        <li><Link href="/labs">Overview</Link></li>
-        <li><Link href="/labs/lab1">Lab 1 - HTML</Link></li>
-        <li><Link href="/labs/lab2">Lab 2 - CSS &amp; Bootstrap</Link></li>
-        <li><Link href="/labs/lab3">Lab 3 - Layouts &amp; Icons</Link></li>
-      </ul>
+    <Nav variant="pills" className="gap-3 mb-4">
+      <NavItem>
+        <NavLink
+          as={Link}
+          href="/labs"
+          className={`nav-link ${isActive("/labs") ? "active" : ""}`}
+        >
+          Labs
+        </NavLink>
+      </NavItem>
 
-      <div className="wd-toc-sep" />
+      <NavItem>
+        <NavLink
+          as={Link}
+          href="/labs/lab1"
+          className={`nav-link ${isActive("/labs/lab1") ? "active" : ""}`}
+        >
+          Lab 1
+        </NavLink>
+      </NavItem>
 
-      <ul className="wd-toc-list">
-        <li><Link href="/Dashboard">Back to Kambaz</Link></li>
-        <li><Link href="/Courses/5610/Home">Go to Course</Link></li>
-      </ul>
-    </nav>
+      <NavItem>
+        <NavLink
+          as={Link}
+          href="/labs/lab2"
+          className={`nav-link ${isActive("/labs/lab2") ? "active" : ""}`}
+        >
+          Lab 2
+        </NavLink>
+      </NavItem>
+
+      <NavItem>
+        <NavLink
+          as={Link}
+          href="/labs/lab3"
+          className={`nav-link ${isActive("/labs/lab3") ? "active" : ""}`}
+        >
+          Lab 3
+        </NavLink>
+      </NavItem>
+
+      <NavItem>
+        <NavLink as={Link} href="/Dashboard">
+          Kambaz
+        </NavLink>
+      </NavItem>
+
+      <NavItem>
+        <NavLink as={Link} href="https://github.com/dashboard">
+          My GitHub
+        </NavLink>
+      </NavItem>
+    </Nav>
   );
 }
