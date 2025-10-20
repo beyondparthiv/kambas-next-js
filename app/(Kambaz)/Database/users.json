@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "u101",
+    "firstName": "Salman",
+    "lastName": "Khan",
+    "loginId": "001234561S",
+    "section": "S101",
+    "role": "STUDENT",
+    "lastActivity": "2020-10-01T00:00:00.000Z",
+    "totalActivity": "10:21:32"
+  },
+  {
+    "_id": "u102",
+    "firstName": "Shahrukh",
+    "lastName": "Khan",
+    "loginId": "001234562S",
+    "section": "S101",
+    "role": "STUDENT",
+    "lastActivity": "2020-11-02T00:00:00.000Z",
+    "totalActivity": "15:32:43"
+  },
+  {
+    "_id": "u103",
+    "firstName": "Amir",
+    "lastName": "Khan",
+    "loginId": "001234563S",
+    "section": "S101",
+    "role": "STUDENT",
+    "lastActivity": "2020-10-02T00:00:00.000Z",
+    "totalActivity": "23:32:43"
+  },
+  {
+    "_id": "u104",
+    "firstName": "Amitabh",
+    "lastName": "Bachan",
+    "loginId": "001234564S",
+    "section": "S101",
+    "role": "TA",
+    "lastActivity": "2020-11-05T00:00:00.000Z",
+    "totalActivity": "13:23:34"
+  },
+  {
+    "_id": "u105",
+    "firstName": "Hrithik",
+    "lastName": "Roshan",
+    "loginId": "001234565S",
+    "section": "S101",
+    "role": "STUDENT",
+    "lastActivity": "2020-12-01T00:00:00.000Z",
+    "totalActivity": "11:22:33"
+  },
+  {
+    "_id": "u106",
+    "firstName": "Jethalal",
+    "lastName": "Gada",
+    "loginId": "001234566S",
+    "section": "S101",
+    "role": "STUDENT",
+    "lastActivity": "2020-12-01T00:00:00.000Z",
+    "totalActivity": "22:33:44"
+  }
+]

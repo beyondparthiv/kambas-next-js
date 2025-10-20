@@ -1,0 +1,52 @@
+[
+  {
+    "course": "RS101",
+    "name": "Week 1",
+    "lessons": [
+      { "name": "LEARNING OBJECTIVES" },
+      { "name": "Introduction to the course" },
+      { "name": "Learn what is Web Development" }
+    ]
+  },
+  {
+    "course": "RS101",
+    "name": "Week 2",
+    "lessons": [
+      { "name": "Next.js Basics" },
+      { "name": "CSS & Bootstrap" }
+    ]
+  },
+  {
+    "course": "RS101",
+    "name": "Week 3",
+    "lessons": [
+      { "name": "React Components" },
+      { "name": "Props & State" }
+    ]
+  },
+
+  {
+    "course": "RS104",
+    "name": "Week 1",
+    "lessons": [
+      { "name": "Organic Molecules Overview" },
+      { "name": "Functional Groups" }
+    ]
+  },
+  {
+    "course": "RS104",
+    "name": "Week 2",
+    "lessons": [
+      { "name": "Stereochemistry" },
+      { "name": "IR/NMR Basics" }
+    ]
+  },
+  {
+    "course": "RS104",
+    "name": "Week 3",
+    "lessons": [
+      { "name": "Reaction Mechanisms I" },
+      { "name": "Reaction Mechanisms II" }
+    ]
+  }
+]

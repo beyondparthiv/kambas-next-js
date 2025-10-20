@@ -1,0 +1,55 @@
+[
+  {
+    "_id": "A1",
+    "course": "RS101",
+    "title": "A1 - ENV + HTML",
+    "points": 100,
+    "due": "2025-09-20T23:59:00Z",
+    "availableFrom": "2025-09-10T00:00:00Z",
+    "until": "2025-09-21T23:59:00Z",
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "percentage",
+    "submission": "online",
+    "description": "The assignment is available online. Submit a link to the landing page."
+  },
+  {
+    "_id": "A2",
+    "course": "RS101",
+    "title": "A2 - Kambaz + Labs",
+    "points": 375,
+    "due": "2025-10-05T23:59:00Z",
+    "availableFrom": "2025-09-28T00:00:00Z",
+    "until": "2025-10-06T23:59:00Z",
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "points",
+    "submission": "online",
+    "description": "Implement Kambaz screens and Labs per rubric."
+  },
+  {
+    "_id": "A3",
+    "course": "RS101",
+    "title": "A3 - React + Next.js",
+    "points": 100,
+    "due": "2025-10-19T23:59:00Z",
+    "availableFrom": "2025-10-12T00:00:00Z",
+    "until": "2025-10-20T23:59:00Z",
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "points",
+    "submission": "online",
+    "description": "Components, props/state, routing."
+  },
+
+  {
+    "_id": "A1",
+    "course": "RS104",
+    "title": "A1 - Mechanisms I",
+    "points": 100,
+    "due": "2025-09-18T23:59:00Z",
+    "availableFrom": "2025-09-08T00:00:00Z",
+    "until": "2025-09-19T23:59:00Z",
+    "group": "ASSIGNMENTS",
+    "displayGradeAs": "points",
+    "submission": "online",
+    "description": "Organic Chemistry assignment."
+  }
+]
