@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   FaUserCircle,
   FaTachometerAlt,
@@ -13,45 +13,41 @@ import {
   FaUsers,
   FaHistory,
   FaQuestionCircle,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 type NavItem = {
   label: string;
-  path: string;
+  path: string; // must match your route folder naming
   icon: React.ComponentType<{ className?: string }>;
-  // optional: treat as "active" when pathname includes this substring
-  activeWhen?: string | ((pathname: string) => boolean);
 };
 
 export default function Navigation() {
-  const pathname = usePathname() || "";
+  const pathname = (usePathname() || '').toLowerCase();
 
-  // Data-driven links (rubric)
+  // Use lowercase paths to match Next.js routes and make matching reliable.
   const links: NavItem[] = [
-    { label: "Dashboard", path: "/Dashboard", icon: FaTachometerAlt, activeWhen: "/dashboard" },
-    // Per professor: Courses goes to Dashboard
-    { label: "Courses", path: "/Dashboard", icon: FaBook, activeWhen: "/dashboard" },
-    { label: "Calendar", path: "/Calendar", icon: FaCalendarAlt, activeWhen: "/calendar" },
-    { label: "Inbox", path: "/Inbox", icon: FaInbox, activeWhen: "/inbox" },
-    { label: "Labs", path: "/labs", icon: FaFlask, activeWhen: "/labs" },
+    { label: 'Dashboard', path: '/Dashboard', icon: FaTachometerAlt },
+    // Per professor: Courses routes to the dashboard
+    { label: 'Courses',   path: '/Dashboard', icon: FaBook },
+    { label: 'Calendar',  path: '/Calendar',  icon: FaCalendarAlt },
+    { label: 'Inbox',     path: '/Inbox',     icon: FaInbox },
+    { label: 'Labs',      path: '/labs',      icon: FaFlask },
 
-    // --- extra items you had (not required by rubric) ---
-    { label: "Groups", path: "/Groups", icon: FaUsers, activeWhen: "/groups" },
-    { label: "History", path: "/History", icon: FaHistory, activeWhen: "/history" },
-    { label: "Help", path: "/Help", icon: FaQuestionCircle, activeWhen: "/help" },
+    // extras you had
+    { label: 'Groups',    path: '/Groups',    icon: FaUsers },
+    { label: 'History',   path: '/History',   icon: FaHistory },
+    { label: 'Help',      path: '/Help',      icon: FaQuestionCircle },
   ];
 
-  const isActive = (item: NavItem) => {
-    const rule = item.activeWhen;
-    if (!rule) return pathname.toLowerCase() === item.path.toLowerCase();
-    if (typeof rule === "string") return pathname.toLowerCase().includes(rule);
-    return rule(pathname.toLowerCase());
+  const isActive = (path: string) => {
+    // startsWith keeps "Dashboard" active on subpages like /dashboard/...
+    return pathname.startsWith(path);
   };
 
   return (
     <nav id="wd-kanbas-navigation">
       <ul>
-        {/* Northeastern logo (required) */}
+        {/* NEU logo */}
         <li id="wd-nav-neu">
           <a
             href="https://www.northeastern.edu"
@@ -69,27 +65,23 @@ export default function Navigation() {
           </a>
         </li>
 
-        {/* REQUIRED BY RUBRIC: Account link */}
-        <li className="wd-item-required wd-item-account">
-          <Link href="/Account" className={`wd-nav-link ${pathname.startsWith("/Account") ? "wd-active" : ""}`}>
+        {/* Account (special item) */}
+        <li className={`wd-item-required wd-item-account ${pathname.startsWith('/Account') ? 'wd-active' : ''}`}>
+          <Link href="/Account" className="wd-nav-link" aria-current={pathname.startsWith('/Account') ? 'page' : undefined}>
             <FaUserCircle className="wd-icon" />
             <span>Account</span>
           </Link>
         </li>
 
         {/* Data-driven items */}
-        {links.map((link) => {
-          const Icon = link.icon;
-          const active = isActive(link);
-          return (
-            <li key={link.label} className={active ? "wd-active" : ""}>
-              <Link href={link.path} className="wd-nav-link">
-                <Icon className="wd-icon" />
-                <span className="wd-label">{link.label}</span>
-              </Link>
-            </li>
-          );
-        })}
+        {links.map(({ label, path, icon: Icon }) => (
+          <li key={label} className={isActive(path) ? 'wd-active' : ''}>
+            <Link href={path} className="wd-nav-link" aria-current={isActive(path) ? 'page' : undefined}>
+              <Icon className="wd-icon" />
+              <span className="wd-label">{label}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
