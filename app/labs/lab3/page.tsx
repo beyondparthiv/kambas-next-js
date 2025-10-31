@@ -39,6 +39,9 @@ import Styles from "./Styles";
 import Add from "./Add";
 import Square from "./Square";
 import Highlight from "./Highlight";
+import TodoList from "./todos/TodoList";
+import TodoItem from "./todos/TodoItem";
+
 
 import "./Classes.css";
 
@@ -138,6 +141,13 @@ export default function Lab3() {
       <hr />
       </section>
 
+
+    {/* Classes & Styles */}
+      <section id="wd-classes-styles">
+        <TodoList />
+
+        <hr />
+      </section>
 
     </div>
   );
