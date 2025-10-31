@@ -1,6 +1,31 @@
+"use client";
+
+import { useParams } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
+import { users, enrollments } from "../../../Database"; // adjust relative path if your file lives deeper
+
+type User = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  loginId: string;
+  section: string;
+  role: string;
+  lastActivity: string;
+  totalActivity: string;
+};
+
+type Enrollment = { _id: string; user: string; course: string };
 
 export default function People() {
+  const { cid } = useParams() as { cid: string };
+
+  const list = (users as User[]).filter((usr) =>
+    (enrollments as Enrollment[]).some(
+      (e) => e.user === usr._id && e.course === cid
+    )
+  );
+
   return (
     <div id="wd-people">
       <h1>People</h1>
@@ -18,83 +43,27 @@ export default function People() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="wd-full-name text-nowrap">
-                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                <span className="wd-first-name">Salman</span>{" "}
-                <span className="wd-last-name">Khan</span>
-              </td>
-              <td>001234561S</td>
-              <td>S101</td>
-              <td>STUDENT</td>
-              <td>2020-10-01T00:00:00.000Z</td>
-              <td>10:21:32</td>
-            </tr>
-
-            <tr>
-              <td className="wd-full-name text-nowrap">
-                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                <span className="wd-first-name">Shahrukh</span>{" "}
-                <span className="wd-last-name">Khan</span>
-              </td>
-              <td>001234562S</td>
-              <td>S101</td>
-              <td>STUDENT</td>
-              <td>2020-11-02T00:00:00.000Z</td>
-              <td>15:32:43</td>
-            </tr>
-
-            <tr>
-              <td className="wd-full-name text-nowrap">
-                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                <span className="wd-first-name">Amir</span>{" "}
-                <span className="wd-last-name">Khan</span>
-              </td>
-              <td>001234563S</td>
-              <td>S101</td>
-              <td>STUDENT</td>
-              <td>2020-10-02T00:00:00.000Z</td>
-              <td>23:32:43</td>
-            </tr>
-
-            <tr>
-              <td className="wd-full-name text-nowrap">
-                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                <span className="wd-first-name">Amitabh</span>{" "}
-                <span className="wd-last-name">Bachan</span>
-              </td>
-              <td>001234564S</td>
-              <td>S101</td>
-              <td>TA</td>
-              <td>2020-11-05T00:00:00.000Z</td>
-              <td>13:23:34</td>
-            </tr>
-
-            <tr>
-              <td className="wd-full-name text-nowrap">
-                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                <span className="wd-first-name">Hrithik</span>{" "}
-                <span className="wd-last-name">Roshan</span>
-              </td>
-              <td>001234565S</td>
-              <td>S101</td>
-              <td>STUDENT</td>
-              <td>2020-12-01T00:00:00.000Z</td>
-              <td>11:22:33</td>
-            </tr>
-
-            <tr>
-              <td className="wd-full-name text-nowrap">
-                <FaUserCircle className="me-2 fs-1 text-secondary" />
-                <span className="wd-first-name">Jethalal</span>{" "}
-                <span className="wd-last-name">Gada</span>
-              </td>
-              <td>001234566S</td>
-              <td>S101</td>
-              <td>STUDENT</td>
-              <td>2020-12-01T00:00:00.000Z</td>
-              <td>22:33:44</td>
-            </tr>
+            {list.map((user) => (
+              <tr key={user._id}>
+                <td className="wd-full-name text-nowrap">
+                  <FaUserCircle className="me-2 fs-1 text-secondary" />
+                  <span className="wd-first-name">{user.firstName}</span>{" "}
+                  <span className="wd-last-name">{user.lastName}</span>
+                </td>
+                <td className="wd-login-id">{user.loginId}</td>
+                <td className="wd-section">{user.section}</td>
+                <td className="wd-role">{user.role}</td>
+                <td className="wd-last-activity">{user.lastActivity}</td>
+                <td className="wd-total-activity">{user.totalActivity}</td>
+              </tr>
+            ))}
+            {list.length === 0 && (
+              <tr>
+                <td colSpan={6} className="text-muted">
+                  No people enrolled in this course.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

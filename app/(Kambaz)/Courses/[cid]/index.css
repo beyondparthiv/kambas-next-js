@@ -19,6 +19,9 @@
 #wd-course-navigation li.wd-active a { color: #000; font-weight: 600; }
 #wd-course-navigation li:hover { background: #f7f7f7; }
 
+
+
+
 /* =========================================================
    HOME
    ========================================================= */
@@ -218,3 +221,360 @@
 
 /* the tiny little caret arrow */
 .wd-caret { font-size: 12px; line-height: 1; }
+
+#wd-course-main > h2 {
+  font-weight: 600;
+  margin-bottom: 0.1rem !important;
+}
+
+#wd-course-main .text-secondary.small {
+  opacity: 0.75;
+  font-size: 0.85rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.3rem !important;
+}
+
+.wd-breadcrumb-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c0392b; /* Northeastern red */
+  margin-bottom: 8px;
+}
+
+
+/* ========================= MODULES TOOLBAR IMPROVED ========================= */
+
+.wd-modules-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 14px 0;
+  gap: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.wd-btn-grey {
+  background: #e3e5e8;
+  border: 1px solid #c5c8cc;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #242424;
+  font-weight: 500;
+}
+
+.wd-btn-grey:hover {
+  background: #d7dadf;
+}
+
+.wd-btn-red {
+  margin-left: auto; /* Pushes the red button to far right */
+  background: #c0392b;
+  border: 1px solid #a32f22;
+  color: white;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.wd-btn-red:hover {
+  background: #a32f22;
+}
+
+/* Publish Dropdown */
+.wd-publish-wrapper {
+  position: relative;
+}
+
+.wd-publish-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #c5c8cc;
+  width: 220px;
+  margin-top: 6px;
+  z-index: 100;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.12);
+}
+
+.wd-publish-wrapper:hover .wd-publish-menu {
+  display: block;
+}
+
+.wd-publish-menu li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.wd-publish-menu li:last-child {
+  border-bottom: none;
+}
+
+/* MODULE HEADER COLOR */
+.wd-module-title {
+  background: #d4d7db !important;  /* darker grey */
+  font-weight: 600;
+}
+
+
+/* Toolbar layout: left group + right red button */
+#wd-modules-toolbar.wd-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* left group + right "+ Module" */
+  gap: 12px;
+  margin-bottom: 12px;
+}
+#wd-modules-toolbar .wd-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Make the module header darker gray like Canvas */
+.wd-module-title {
+  background: #c9cdd2;              /* darker gray */
+  color: #1f2937;                    /* dark text */
+  border-bottom: 1px solid #b9bfc6;
+}
+
+/* Slightly chunkier toolbar buttons like the book’s shot */
+.btn-grey, .btn-red {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.btn-grey {
+  background: #e2e8f0;               /* soft gray */
+  border: 1px solid #cbd5e1;
+}
+.btn-red  {
+  background: #c62828;               /* NEU-ish red */
+  border: 1px solid #aa1f1f;
+  color: #fff;
+}
+
+/* Keep the modules list centered width like Canvas */
+#wd-modules .wd-module { max-width: 880px; }
+
+/* Keep caret small */
+.wd-caret { font-size: 12px; margin-left: 4px; }
+
+
+/* keep all toolbar buttons together on the left */
+#wd-modules-toolbar.wd-toolbar {
+  justify-content: flex-start;   /* was space-between earlier */
+}
+
+/* tidy spacing when they wrap */
+#wd-modules-toolbar .wd-toolbar-left {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* tiny visual nudge so Module doesn’t crowd the dropdown */
+#wd-modules-toolbar .btn-red { margin-left: 2px; }
+
+
+#wd-status-actions .btn-slate svg { width: 14px; height: 14px; opacity: .9; }
+
+/* Course Status Buttons */
+.status-buttons {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0 14px 0;
+}
+
+.btn-unpublish {
+  background: #e9ecef;
+  border: 1px solid #cfd4d9;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-publish {
+  background: #198754; /* Canvas green */
+  border: 1px solid #146c43;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Status action list */
+.status-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.status-actions button {
+  background: #eef1f4;
+  border: 1px solid #d6dbe0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+.status-actions button:hover {
+  background: #e2e6ea;
+}
+
+/* Remove card border + background for Course Status */
+#wd-home-status .card {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+#wd-home-status .card-body {
+  padding: 0 !important;
+}
+
+/* Ensure title remains aligned */
+#wd-home-status .card-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+
+/* Make Unpublish & Publish stretch full width side-by-side */
+#wd-course-status-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* equal widths */
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Button Styling */
+#wd-course-status-actions button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Unpublish button (grey) */
+#wd-course-status-actions .wd-unpublish-btn {
+  background: #eef1f4;
+  border-color: #cfd4d9;
+  color: #444;
+}
+
+/* Publish button (green) */
+#wd-course-status-actions .wd-publish-btn {
+  background: #1f7a39;
+  border-color: #18612d;
+  color: #fff;
+}
+
+/* ===== Assignments (Canvas-style group box) ===== */
+#wd-assignments h1 { margin-bottom: 12px; }
+
+.wd-assignments-box {
+  max-width: 880px;
+  border: 1px solid #cfd4d9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.wd-assignments-header {
+  background: #e9ecef;
+  border-bottom: 1px solid #d8dde3;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #404040;
+}
+
+/* “40% of Total” */
+.wd-badge-pill {
+  background: #eef1f4;
+  border: 1px solid #cfd4d9;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: #2b2b2b;
+}
+
+/* Rows – you already had .wd-assign-item; just ensure these */
+.wd-assign-list { background: #fff; }
+.wd-assign-item {
+  border-left: 4px solid #2ea043; /* green strip */
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.wd-assign-item:last-child { border-bottom: 0; }
+
+/* Title link */
+.wd-assign-title {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 600;
+}
+.wd-assign-title:hover { text-decoration: underline; }
+
+
+/* Toolbar in one row: Search | +Group | +Assignment */
+.wd-assignments-toolbar{
+  display:flex;
+  align-items:center;         /* keep everything on the same baseline */
+  gap:12px;
+  max-width:880px;
+  margin-bottom:12px;
+}
+
+/* Search expands, buttons keep their size */
+.wd-assignments-toolbar .wd-search{ flex:1; }
+.wd-assignments-toolbar .wd-search input{
+  height:40px;                /* control height so buttons can match it */
+}
+
+/* Two CTA buttons */
+.wd-assignments-toolbar .wd-cta{ display:flex; gap:8px; }
+
+/* Make both buttons equal height and vertically centered */
+.btn-grey, .btn-red{
+  display:inline-flex;        /* align icon + text neatly */
+  align-items:center;
+  justify-content:center;
+  height:40px;                /* == search height */
+  padding:0 16px;
+  line-height:1;
+  border-radius:8px;
+  border:1px solid #cfd4d9;
+}
+
+/* Colors (grey & red) */
+.btn-grey{ background:#e9edf2; color:#333; }
+.btn-red { background:#d22; border-color:#b00; color:#fff; }
+
+/* Give icons a tiny gap from text */
+.btn-grey svg, .btn-red svg{ margin-right:8px; }
+
+
+/* Assignment Editor polish */
+#wd-editor .card { border: 1px solid #e5e5e5; border-radius: 8px; }
+#wd-editor label.form-label { color: #444; }
+#wd-editor .fw-semibold { color: #2b2b2b; }
+
+.wd-desc-card .card-body { background: #fff; }
+.wd-editor-side .form-control { height: 38px; }

@@ -2,16 +2,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function SidebarNav({
-  links,
-}: {
-  links: { label: string; path: string }[];
-}) {
-  const pathname = (usePathname() || "").toLowerCase();
-  const isActive = (p: string) => pathname.startsWith(p.toLowerCase());
+export default function SidebarNav({ links }: { links: { label: string, path: string }[] }) {
+  const pathname = usePathname().toLowerCase();
+
+  const isActive = (path: string) => pathname.startsWith(path.toLowerCase());
 
   return (
-    <aside id="wd-course-navigation" aria-label="Course navigation">
+    <aside id="wd-course-navigation">
       <h4>Course</h4>
       <ul>
         {links.map((l) => (

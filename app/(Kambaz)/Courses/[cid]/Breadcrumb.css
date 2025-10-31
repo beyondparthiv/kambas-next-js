@@ -1,0 +1,18 @@
+#wd-breadcrumb {
+  font-size: 0.9rem;
+  color: #6c757d; /* muted gray */
+  margin: 0.25rem 0 1rem 0; 
+}
+
+#wd-breadcrumb span {
+  margin: 0 0.35rem;
+}
+
+#wd-breadcrumb .wd-breadcrumb-course {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+#wd-breadcrumb .wd-breadcrumb-page {
+  color: #6c757d;
+}

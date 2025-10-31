@@ -59,7 +59,7 @@ export default function TOC() {
       </NavItem>
 
       <NavItem>
-        <NavLink as={Link} href="https://github.com/dashboard">
+        <NavLink as={Link} href="https://github.com/beyondparthiv/kambas-next-js">
           My GitHub
         </NavLink>
       </NavItem>

@@ -1,18 +1,13 @@
-
-
 import { notFound } from "next/navigation";
 import { courses } from "../../Database";
 import "./index.css";
 
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "./Breadcrumb"; 
 import SidebarNav from "./SidebarNav";
 
 type Course = { _id: string; name: string; number: string; description: string };
 
-export default async function CourseLayout(
-  { children, params }: LayoutProps<"/Courses/[cid]">
-) {
-  // In Next 15 validator typings, params is a Promise
+export default async function CourseLayout({ children, params }: never) {
   const { cid } = await params;
 
   const list = courses as Course[];
@@ -36,14 +31,15 @@ export default async function CourseLayout(
       <SidebarNav links={links} />
 
       <main id="wd-course-main">
-        <h2 className="text-danger m-0 fw-bold">{course.name}</h2>
-        <div className="text-muted">{course.number}</div>
 
-        <Breadcrumb course={course.name} />
+        <h2 className="wd-breadcrumb-title">
+          <Breadcrumb course={course.name} />
+        </h2>
 
         <hr />
         {children}
       </main>
+
     </div>
   );
 }
