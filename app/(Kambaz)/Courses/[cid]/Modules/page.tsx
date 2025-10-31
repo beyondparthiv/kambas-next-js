@@ -16,7 +16,7 @@ export default async function Modules({
 
   return (
     <div id="wd-modules">
-      <h1>Course {cid}</h1>
+      
 
       <div id="wd-modules-toolbar" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <a href="#" className="btn-grey">Collapse All</a>

@@ -32,7 +32,7 @@ export default function AssignmentsPage() {
 
   return (
     <div id="wd-assignments">
-      <h1>Assignments</h1>
+     
 
       {/* Toolbar: search + equal buttons beside it */}
       <div className="wd-assignments-toolbar">
