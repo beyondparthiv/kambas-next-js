@@ -56,3 +56,13 @@
   padding: 12px;
   background: #fff;
 }
+
+#wd-array-state-variables ul {
+  width: 200px;
+  padding-left: 0;
+}
+
+#wd-array-state-variables button {
+  cursor: pointer;
+}
+
