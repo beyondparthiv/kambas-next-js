@@ -4,9 +4,7 @@ import { FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { BsPlus } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
-
-// You already have a GreenCheckmark somewhere in Labs/Kambaz; stub simple check if not.
-const GreenCheckmark = () => <span className="text-success fw-bold me-2">✔</span>;
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function ModuleControlButtons({
   moduleId,
@@ -18,19 +16,21 @@ export default function ModuleControlButtons({
   editModule: (moduleId: string) => void;
 }) {
   return (
-    <div className="float-end">
+    <div className="float-end d-flex align-items-center gap-3">
       <FaPencil
         onClick={() => editModule(moduleId)}
-        className="text-primary me-3"
+        className="text-primary"
         role="button"
+        title="Edit module name"
       />
       <FaTrash
-        className="text-danger me-2 mb-1"
-        role="button"
         onClick={() => deleteModule(moduleId)}
+        className="text-danger"
+        role="button"
+        title="Delete module"
       />
-      <GreenCheckmark />
-      <BsPlus className="fs-1" />
+      <FaCheckCircle className="text-success" />
+      <BsPlus className="fs-3" />
       <IoEllipsisVertical className="fs-4" />
     </div>
   );

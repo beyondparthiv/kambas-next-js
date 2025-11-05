@@ -177,3 +177,110 @@
   #wd-kanbas-navigation .wd-icon { font-size: 20px; }
   #wd-kanbas-main { padding: 16px; }
 }
+
+
+/* ---------- Modules toolbar ---------- */
+#wd-modules-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+#wd-modules-toolbar .btn-grey {
+  background: #f7f7f7;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #111;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+#wd-modules-toolbar .btn-grey:hover { background: #eee; }
+#wd-modules-toolbar .btn-red {
+  background: #dc3545;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+#wd-modules-toolbar .btn-red:hover { background: #c92333; }
+
+/* Publish All dropdown (simple, non-interactive) */
+#wd-publish-all { position: relative; }
+#wd-publish-all .wd-ok { color: #2e9b43; }
+#wd-publish-menu {
+  list-style: none; margin: 6px 0 0; padding: 8px 10px;
+  border: 1px solid #d9d9d9; border-radius: 8px; background: #fff;
+  position: absolute; left: 0; top: 40px; width: 220px; display: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+#wd-publish-all:hover #wd-publish-menu { display: block; }
+#wd-publish-menu li { padding: 6px 0; font-size: 14px; }
+
+/* ---------- Module blocks ---------- */
+#wd-modules .wd-module {
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+}
+
+#wd-modules .wd-module-title {
+  background: #e9ecef;      /* soft gray bar like Canvas */
+  padding: 12px 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#wd-modules .wd-lesson {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-top: 1px solid #efefef;
+  background: #fff;
+}
+
+/* Green left guide rail like Canvas */
+#wd-modules .wd-lesson::before,
+#wd-modules .wd-module-title::before {
+  content: "";
+  width: 4px; height: 100%;
+  background: #2fb652;
+  position: absolute; left: 0; top: 0; opacity: .9;
+}
+#wd-modules .wd-module-title,
+#wd-modules .wd-lesson { position: relative; padding-left: 22px; }
+
+/* Drag glyph + text spacing inside lesson lines */
+#wd-modules .wd-drag { margin-right: 10px; color: #6c757d; }
+
+/* Actions (check, plus, kebab) */
+#wd-modules .wd-actions {
+  display: flex; align-items: center; gap: 12px;
+}
+#wd-modules .wd-actions .wd-ok   { color: #2fb652; }
+#wd-modules .wd-actions .wd-plus { color: #6c757d; }
+#wd-modules .wd-actions .wd-kebab{ color: #6c757d; }
+
+/* Show header edit/trash only on hover for a cleaner look */
+#wd-modules .wd-header-tools { opacity: 0; transition: opacity .12s ease; }
+#wd-modules .wd-module-title:hover .wd-header-tools { opacity: 1; }
+
+/* Pencil & trash buttons sizing/spacing */
+#wd-modules .wd-header-tools .btn-icon {
+  border: none; background: transparent; padding: 2px;
+  color: #0d6efd;
+}
+#wd-modules .wd-header-tools .btn-icon.text-danger { color: #dc3545; }
+
+/* Typography consistency */
+#wd-modules .wd-module-title span,
+#wd-modules .wd-lesson span { font-size: 16px; }

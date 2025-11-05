@@ -22,6 +22,7 @@ export default function ModuleEditor({
       <Modal.Header closeButton>
         <Modal.Title>{dialogTitle}</Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         <FormControl
           value={moduleName}
@@ -29,6 +30,7 @@ export default function ModuleEditor({
           placeholder="Module name"
         />
       </Modal.Body>
+
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Cancel
