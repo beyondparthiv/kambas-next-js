@@ -1,14 +1,19 @@
 // app/(Kambaz)/layout.tsx
-import "./index.css";
-import Navigation from "./Navigation";
+"use client";
 
-export default function KanbasLayout({ children }: { children: React.ReactNode }) {
+import { ReactNode } from "react";
+import Navigation from "./Navigation";
+import "./index.css";
+import store from "./store";
+import { Provider } from "react-redux";
+
+export default function KanbasLayout({ children }: { children: ReactNode }) {
   return (
-    <div id="wd-kanbas-shell">
-      <Navigation />
-      <main id="wd-kanbas-main">
-        {children}
-      </main>
-    </div>
+    <Provider store={store}>
+      <div id="wd-kanbas-shell">
+        <Navigation />
+        <main id="wd-kanbas-main">{children}</main>
+      </div>
+    </Provider>
   );
 }

@@ -1,65 +1,65 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import * as db from "../Database";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addNewCourse as addCourseAction,
+  deleteCourse as deleteCourseAction,
+  updateCourse as updateCourseAction,
+} from "../reducer";
+import { RootState } from "../store";
 
 type Course = {
   _id: string;
   name: string;
-  number: string;
+  number?: string;
   description: string;
-  image: string;
+  image?: string;
   startDate?: string;
   endDate?: string;
 };
 
 export default function Dashboard() {
-  // 1) courses in state
-  const [courses, setCourses] = useState<Course[]>(
-    (db.courses as Course[]) ?? []
-  );
+  // read from Redux
+  const { courses } = useSelector((s: RootState) => s.courseReducer);
+  const dispatch = useDispatch();
 
-  // 2) form state (used for Add and Edit)
+  // local form state only
   const [course, setCourse] = useState<Course>({
     _id: "0",
     name: "New Course",
-    number: "NEW-0000",
     description: "New Description",
-    image: "reactjs.jpg",
-    startDate: "2023-09-10",
-    endDate: "2023-12-15",
   });
 
-  // Add
-  const addNewCourse = () => {
-    const newCourse: Course = { ...course, _id: Date.now().toString() };
-    setCourses([...courses, newCourse]);
-  };
-
-  // Edit (copy a course into the form)
-  const startEdit = (c: Course) => setCourse(c);
-
-  // Update the selected course
-  const updateCourse = () => {
-    setCourses((prev) =>
-      prev.map((c) => (c._id === course._id ? { ...c, ...course } : c))
-    );
-  };
-
-  // Delete by id
-  const deleteCourse = (id: string) => {
-    setCourses((prev) => prev.filter((c) => c._id !== id));
-  };
+  // copy card into form to edit
+  const startEdit = (c: any) => setCourse(c);
 
   return (
     <div id="wd-dashboard" className="p-3">
       <h1 id="wd-dashboard-title">Dashboard</h1>
       <hr />
 
-      {/* Form */}
+      {/* New Course form (prof layout: title + buttons on same row) */}
       <section className="mb-4">
-        <h5 className="mb-2">New Course</h5>
+        <div className="d-flex align-items-center gap-2 mb-2">
+          <h5 className="mb-0">New Course</h5>
+          <button
+            id="wd-update-course-click"
+            className="btn btn-warning"
+            onClick={() => dispatch(updateCourseAction(course))}
+          >
+            Update
+          </button>
+          <button
+            id="wd-add-new-course-click"
+            className="btn btn-primary"
+            onClick={() => dispatch(addCourseAction(course))}
+          >
+            Add
+          </button>
+        </div>
 
         <input
           className="form-control mb-2"
@@ -67,9 +67,8 @@ export default function Dashboard() {
           onChange={(e) => setCourse({ ...course, name: e.target.value })}
           placeholder="Course name"
         />
-
         <textarea
-          className="form-control mb-2"
+          className="form-control"
           rows={3}
           value={course.description}
           onChange={(e) =>
@@ -77,46 +76,19 @@ export default function Dashboard() {
           }
           placeholder="Course description"
         />
-
-        <div className="d-flex gap-2 mb-2">
-          <input
-            className="form-control"
-            value={course.number}
-            onChange={(e) => setCourse({ ...course, number: e.target.value })}
-            placeholder="Course number (e.g., CS5610)"
-          />
-          <input
-            className="form-control"
-            value={course.image}
-            onChange={(e) => setCourse({ ...course, image: e.target.value })}
-            placeholder="Image filename (e.g., reactjs.jpg)"
-          />
-        </div>
-
-        <div className="d-flex gap-2">
-          <button id="wd-update-course-click" className="btn btn-warning" onClick={updateCourse}>
-            Update
-          </button>
-          <button id="wd-add-new-course-click" className="btn btn-primary" onClick={addNewCourse}>
-            Add
-          </button>
-        </div>
       </section>
 
-      <h2 id="wd-dashboard-published">
-        Published Courses ({courses.length})
-      </h2>
+      <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
       <hr />
 
       {/* Cards */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-        {courses.map((c) => (
+        {courses.map((c: any) => (
           <div key={c._id} className="col">
             <div className="card h-100">
-              {/* Make only the image clickable to the course page */}
               <Link href={`/Courses/${c._id}/Home`} className="text-decoration-none">
                 <img
-                  src={`/images/courses/${c.image}`}
+                  src={`/images/courses/${c.image ?? "reactjs.jpg"}`}
                   className="card-img-top"
                   alt={c.name}
                   style={{ height: "160px", objectFit: "cover" }}
@@ -124,7 +96,6 @@ export default function Dashboard() {
               </Link>
 
               <div className="card-body">
-                {/* Title links to course too */}
                 <h6 className="fw-semibold mb-2">
                   <Link
                     href={`/Courses/${c._id}/Home`}
@@ -146,25 +117,27 @@ export default function Dashboard() {
                   {c.description}
                 </p>
 
-                {/* Footer buttons: Go | Edit | Delete */}
-                <div className="d-flex gap-2">
+                {/* Go left, Edit/Delete right, with spacing */}
+                <div className="d-flex justify-content-between align-items-center">
                   <Link href={`/Courses/${c._id}/Home`} className="btn btn-primary">
                     Go
                   </Link>
-                  <button
-                    id="wd-edit-course-click"
-                    className="btn btn-warning"
-                    onClick={() => startEdit(c)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    id="wd-delete-course-click"
-                    className="btn btn-danger"
-                    onClick={() => deleteCourse(c._id)}
-                  >
-                    Delete
-                  </button>
+                  <div>
+                    <button
+                      id="wd-edit-course-click"
+                      className="btn btn-warning me-2"
+                      onClick={() => startEdit(c)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      id="wd-delete-course-click"
+                      className="btn btn-danger"
+                      onClick={() => dispatch(deleteCourseAction(c._id))}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

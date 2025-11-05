@@ -1,27 +1,31 @@
-import { notFound } from "next/navigation";
-import { use } from "react";
-import type { ReactNode } from "react";
-import { courses } from "../../Database";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
+import { ReactNode, useMemo, useState } from "react";
+import { useParams } from "next/navigation";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
+import { FaAlignJustify } from "react-icons/fa";
 import "./index.css";
 
 import Breadcrumb from "./Breadcrumb";
 import SidebarNav from "./SidebarNav";
 
-type Course = { _id: string; name: string; number: string; description: string };
+export default function CoursesLayout({ children }: { children: ReactNode }) {
+  // read cid from the URL
+  const { cid } = useParams<{ cid: string }>();
 
-type LayoutProps = {
-  children: ReactNode;
-  params: Promise<{ cid: string }>;
-};
+  // pull courses from Redux
+  const { courses } = useSelector((s: RootState) => s.courseReducer);
+  const course = useMemo(
+    () => courses.find((c: any) => c._id === cid),
+    [courses, cid]
+  );
 
-export default function CourseLayout({ children, params }: LayoutProps) {
-  // Unwrap the params Promise (Next 15+ pattern)
-  const { cid } = use(params);
+  // left navigation toggle
+  const [navOpen, setNavOpen] = useState(true);
 
-  const list = courses as Course[];
-  const course = list.find((c) => c._id === cid);
-  if (!course) notFound();
-
+  // build the left-nav links (same as your previous SidebarNav use)
   const base = `/Courses/${cid}`;
   const links = [
     { label: "Home",        path: `${base}/Home` },
@@ -35,15 +39,32 @@ export default function CourseLayout({ children, params }: LayoutProps) {
   ];
 
   return (
-    <div id="wd-course-shell">
-      <SidebarNav links={links} />
-      <main id="wd-course-main">
-        <h2 className="wd-breadcrumb-title">
-          <Breadcrumb course={course.name} />
-        </h2>
-        <hr />
-        {children}
-      </main>
+    <div id="wd-courses">
+      {/* Header with sandwich icon and course name */}
+      <h2 className="wd-breadcrumb-title d-flex align-items-center">
+        <FaAlignJustify
+          className="me-4 fs-4 mb-1"
+          role="button"
+          aria-label="Toggle course navigation"
+          onClick={() => setNavOpen((v) => !v)}
+        />
+        <span>{course?.name ?? "Course"}</span>
+      </h2>
+      <hr />
+
+      {/* Two-column layout: left nav (toggleable) + main content */}
+      <div className="d-flex">
+        {navOpen && (
+          <div className="me-4">
+            <SidebarNav links={links} />
+          </div>
+        )}
+        <div className="flex-fill">
+          {/* If you still want the breadcrumb inline under the title, keep it; otherwise remove */}
+          {/* <Breadcrumb course={course?.name ?? "Course"} /> */}
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
