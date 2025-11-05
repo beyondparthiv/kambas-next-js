@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import courseReducer from "./reducer"
+import coursesReducer from "./reducer";
 import modulesReducer from "./Courses/[cid]/Modules/reducer";
-
+import assignmentsReducer from "./Courses/[cid]/Assignments/reducer";
 
 const store = configureStore({
-  reducer: { courseReducer,
+  reducer: {
+    coursesReducer,
     modulesReducer,
-   },
-    
-
+    assignmentsReducer, // ← NEW
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,50 +1,51 @@
 "use client";
 
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { notFound } from "next/navigation";
-import { courses, assignments } from "../../../../Database";
-
-type Course = { _id: string; name: string; number?: string };
-type Assignment = {
-  _id: string;
-  course: string;
-  title: string;
-  description?: string;
-  points?: number;
-  group?: string;
-  gradeAs?: string;
-  submission?: string;
-  assignTo?: string;
-  due?: string;             // expect YYYY-MM-DD for date inputs
-  availableFrom?: string;   // expect YYYY-MM-DD
-  availableUntil?: string;  // expect YYYY-MM-DD
-};
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../../../store";
+import {
+  addAssignment,
+  updateAssignment,
+  type Assignment,
+} from "../reducer";
+import React from "react";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams() as { cid: string; aid: string };
+  const router = useRouter();
+  const dispatch = useDispatch();
 
-  const course = (courses as Course[]).find((c) => c._id === cid);
-  if (!course) return notFound();
-
-  const a = (assignments as Assignment[]).find(
-    (x) => x.course === cid && x._id === aid
+  const { assignments } = useSelector(
+    (s: RootState) => s.assignmentsReducer
   );
-  if (!a) return notFound();
 
-  const title = a.title || "Untitled Assignment";
-  const description =
-    a.description ||
-    `The assignment is available online.
+  const existing = assignments.find((x) => x._id === aid && x.course === cid);
+  const isNew = aid === "new" || !existing;
 
-Submit a link to the landing page of your Web application.
-The landing page should include: your name/section; links to labs; link to Kanbas app; and all repos.`;
-  const points = a.points ?? 100;
+  const [state, setState] = React.useState<Assignment>(() => {
+    if (existing) return { ...existing };
+    return {
+      _id: "new",
+      course: cid,
+      title: "New Assignment",
+      description: "",
+      points: 100,
+      due: "",
+      availableFrom: "",
+      availableUntil: "",
+    };
+  });
 
-  // Defaults for date pickers in ISO format (HTML <input type="date">)
-  const defaultDue = a.due || "2025-10-05";
-  const defaultFrom = a.availableFrom || "2025-09-28";
-  const defaultUntil = a.availableUntil || 0;
+  const onSave = () => {
+    if (isNew) {
+      const { _id, ...data } = state;
+      dispatch(addAssignment({ ...data, course: cid }));
+    } else {
+      dispatch(updateAssignment(state));
+    }
+    router.push(`/Courses/${cid}/Assignments`);
+  };
 
   return (
     <div id="wd-editor" className="container-fluid p-0">
@@ -52,23 +53,35 @@ The landing page should include: your name/section; links to labs; link to Kanba
         {/* LEFT */}
         <div className="col-12 col-lg-8">
           <label className="form-label fw-semibold">Assignment Name</label>
-          <input className="form-control mb-3" defaultValue={title} />
+          <input
+            className="form-control mb-3"
+            value={state.title}
+            onChange={(e) => setState({ ...state, title: e.target.value })}
+          />
 
           <div className="card wd-desc-card mb-3">
             <div className="card-body p-3">
-              {/* red hint above the editable description */}
               <div className="text-danger fw-semibold mb-2">Available online</div>
               <textarea
                 className="form-control border-0 p-0"
                 style={{ minHeight: 280, resize: "vertical" }}
-                defaultValue={description}
+                value={state.description ?? ""}
+                onChange={(e) =>
+                  setState({ ...state, description: e.target.value })
+                }
               />
             </div>
           </div>
 
           <div className="mb-4">
             <label className="form-label fw-semibold">Points</label>
-            <input className="form-control" defaultValue={String(points)} />
+            <input
+              className="form-control"
+              value={String(state.points ?? 0)}
+              onChange={(e) =>
+                setState({ ...state, points: Number(e.target.value) || 0 })
+              }
+            />
           </div>
         </div>
 
@@ -80,44 +93,63 @@ The landing page should include: your name/section; links to labs; link to Kanba
 
               <div className="mb-3">
                 <div className="fw-semibold small mb-1">Assign to</div>
-                <input
-                  className="form-control"
-                  defaultValue={a.assignTo || "Everyone"}
-                />
+                <input className="form-control" defaultValue="Everyone" />
               </div>
 
               <div className="mb-3">
                 <div className="fw-semibold small mb-1">Due</div>
-                <input type="date" className="form-control" defaultValue={defaultDue} />
+                <input
+                  type="date"
+                  className="form-control"
+                  value={state.due || ""}
+                  onChange={(e) => setState({ ...state, due: e.target.value })}
+                />
               </div>
 
               <div className="row g-2">
                 <div className="col-6">
                   <div className="fw-semibold small mb-1">Available from</div>
-                  <input type="date" className="form-control" defaultValue={defaultFrom} />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={state.availableFrom || ""}
+                    onChange={(e) =>
+                      setState({ ...state, availableFrom: e.target.value })
+                    }
+                  />
                 </div>
                 <div className="col-6">
                   <div className="fw-semibold small mb-1">Until</div>
-                  <input type="date" className="form-control" defaultValue={defaultUntil} />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={state.availableUntil || ""}
+                    onChange={(e) =>
+                      setState({ ...state, availableUntil: e.target.value })
+                    }
+                  />
                 </div>
               </div>
 
               <div className="d-flex gap-2 mt-4">
-                <Link href={`/Courses/${cid}/Assignments`} className="btn btn-secondary w-50">
+                <Link
+                  href={`/Courses/${cid}/Assignments`}
+                  className="btn btn-secondary w-50"
+                >
                   Cancel
                 </Link>
-                <Link href={`/Courses/${cid}/Assignments`} className="btn btn-danger w-50">
+                <button onClick={onSave} className="btn btn-danger w-50">
                   Save
-                </Link>
+                </button>
               </div>
             </div>
           </div>
 
-          {/* keep hidden selects for rubric parity */}
+          {/* hidden selects to match rubric look & feel (no behavior needed) */}
           <div className="visually-hidden">
-            <select defaultValue={a.group || "ASSIGNMENTS"} />
-            <select defaultValue={a.gradeAs || "percentage"} />
-            <select defaultValue={a.submission || "online"} />
+            <select defaultValue="ASSIGNMENTS" />
+            <select defaultValue="percentage" />
+            <select defaultValue="online" />
           </div>
         </div>
       </div>

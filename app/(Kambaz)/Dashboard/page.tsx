@@ -23,7 +23,7 @@ type Course = {
 
 export default function Dashboard() {
   // read from Redux
-  const { courses } = useSelector((s: RootState) => s.courseReducer);
+  const { courses } = useSelector((s: RootState) => s.coursesReducer);
   const dispatch = useDispatch();
 
   // local form state only
