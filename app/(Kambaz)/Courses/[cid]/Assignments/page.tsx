@@ -1,138 +1,214 @@
+// app/(Kambaz)/Courses/[cid]/Assignments/page.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../../store";
-import { deleteAssignment } from "./reducer";
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
-import {
-  FaSearch,
-  FaPlus,
-  FaGripVertical,
-  FaEllipsisV,
-  FaCheckCircle,
-  FaFolder,
-  FaTrash,
-} from "react-icons/fa";
+import type { RootState, AppDispatch } from "../../../Store/store";
+import { setAssignments, addAssignment as addAssignmentAction, deleteAssignment as deleteAssignmentAction, updateAssignment as updateAssignmentAction } from "./reducer";
+
+const API_BASE = process.env.NEXT_PUBLIC_HTTP_SERVER || "http://localhost:4000";
 
 export default function AssignmentsPage() {
-  const { cid } = useParams() as { cid: string };
-  const dispatch = useDispatch();
-  const { assignments } = useSelector(
-    (s: RootState) => s.assignmentsReducer
-  );
+  const params = useParams();
+  const router = useRouter();
+  const courseId = params?.cid as string;
+  const dispatch = useDispatch<AppDispatch>();
 
-  const [q, setQ] = useState("");
+  const assignments = useSelector((s: RootState) => s.assignmentsReducer.assignments);
 
-  const items = useMemo(
-    () =>
-      assignments
-        .filter((a) => a.course === cid)
-        .filter((a) => a.title.toLowerCase().includes(q.toLowerCase())),
-    [assignments, cid, q]
-  );
+  const [assignment, setAssignment] = useState({
+    _id: "",
+    title: "New Assignment",
+    course: courseId,
+  });
 
-  const shortTitle = (full: string) => full.split(" - ")[0] || full;
+  // Fetch assignments on mount
+  useEffect(() => {
+    if (courseId) {
+      fetchAssignments();
+    }
+  }, [courseId]);
+
+  const fetchAssignments = async () => {
+    try {
+      const response = await axios.get(
+        `${API_BASE}/api/courses/${courseId}/assignments`
+      );
+      console.log("✅ Fetched assignments:", response.data);
+      dispatch(setAssignments(response.data));
+    } catch (error: any) {
+      console.error("⚠️ Backend not available");
+    }
+  };
+
+  const addAssignment = async () => {
+    try {
+      const response = await axios.post(
+        `${API_BASE}/api/courses/${courseId}/assignments`,
+        { title: assignment.title }
+      );
+      console.log("✅ Assignment created:", response.data);
+      await fetchAssignments();
+      
+      setAssignment({
+        _id: "",
+        title: "New Assignment",
+        course: courseId,
+      });
+      
+      alert("Assignment created!");
+    } catch (error: any) {
+      console.error("⚠️ Using Redux fallback");
+      
+      const newAssignment = {
+        _id: new Date().getTime().toString(),
+        title: assignment.title,
+        course: courseId,
+      };
+      
+      dispatch(addAssignmentAction(newAssignment));
+      
+      setAssignment({
+        _id: "",
+        title: "New Assignment",
+        course: courseId,
+      });
+      
+      alert("Assignment created!");
+    }
+  };
+
+  const deleteAssignment = async (assignmentId: string) => {
+    if (!confirm("Are you sure you want to delete this assignment?")) {
+      return;
+    }
+
+    try {
+      await axios.delete(`${API_BASE}/api/assignments/${assignmentId}`);
+      console.log("✅ Assignment deleted");
+      await fetchAssignments();
+      alert("Assignment deleted!");
+    } catch (error: any) {
+      console.error("⚠️ Using Redux fallback");
+      dispatch(deleteAssignmentAction(assignmentId));
+      alert("Assignment deleted! ");
+    }
+  };
+
+  const updateAssignment = async () => {
+    if (!assignment._id) {
+      alert("Please select an assignment to update by clicking Edit");
+      return;
+    }
+
+    try {
+      await axios.put(
+        `${API_BASE}/api/assignments/${assignment._id}`,
+        { title: assignment.title }
+      );
+      console.log("✅ Assignment updated");
+      await fetchAssignments();
+      
+      setAssignment({
+        _id: "",
+        title: "New Assignment",
+        course: courseId,
+      });
+      
+      alert("Assignment updated!");
+    } catch (error: any) {
+      console.error("⚠️ Using Redux fallback");
+      dispatch(updateAssignmentAction(assignment as any));
+      
+      setAssignment({
+        _id: "",
+        title: "New Assignment",
+        course: courseId,
+      });
+      
+      alert("Assignment updated!");
+    }
+  };
+
+  const startEdit = (a: any) => {
+    setAssignment({
+      _id: a._id,
+      title: a.title,
+      course: courseId,
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div id="wd-assignments">
-      {/* Toolbar: search + buttons */}
-      <div className="wd-assignments-toolbar">
-        <div className="wd-search">
-        <FaSearch className="wd-mag" />
+    <div className="p-4">
+      <h2>Assignments</h2>
+      
+      {/* Assignment Management Form */}
+      <div className="mb-4">
+        <h5>{assignment._id ? "Edit Assignment" : "New Assignment"}</h5>
+        
         <input
-          type="text"
-          className="form-control"
-          placeholder="Search for Assignment"
-          // IMPORTANT: no `value` prop here; use uncontrolled input
-          onChange={(e) => {
-            /* optional: store e.target.value in local state if you filter list */
-          }}
-          suppressHydrationWarning
+          className="form-control mb-2"
+          value={assignment.title}
+          onChange={(e) => setAssignment({ ...assignment, title: e.target.value })}
+          placeholder="Assignment title"
         />
-      </div>
-
-        <div className="wd-cta">
-          <button className="btn-grey w-100">
-            <FaPlus className="me-2" /> Group
-          </button>
-          <Link
-            href={`/Courses/${cid}/Assignments/new`}
-            className="btn-red w-100"
+        
+        <div className="d-flex gap-2">
+          <button
+            className="btn btn-warning"
+            onClick={updateAssignment}
+            disabled={!assignment._id}
           >
-            <FaPlus className="me-2" />
-            Assignment
-          </Link>
+            Update
+          </button>
+          
+          <button
+            className="btn btn-primary"
+            onClick={addAssignment}
+          >
+            Add Assignment
+          </button>
         </div>
       </div>
 
-      {/* Group container (Canvas-style) */}
-      <div className="wd-assignments-box">
-        <div className="wd-assignments-header">
-          <div className="d-flex align-items-center gap-2">
-            <span className="wd-drag">▤</span>
-            <span className="fw-semibold">ASSIGNMENTS</span>
-          </div>
+      <hr />
 
-          <div className="d-flex align-items-center gap-2">
-            <span className="wd-badge-pill">40% of Total</span>
-            <FaPlus className="wd-plus" />
-            <FaEllipsisV className="wd-kebab" />
-          </div>
-        </div>
-
-        {/* Assignment rows */}
-        <div className="wd-assign-list">
-          {items.map((a) => (
-            <div key={a._id} className="wd-assign-item">
-              <div className="d-flex align-items-start gap-3">
-                <FaGripVertical className="wd-drag mt-1" />
-                <FaFolder className="mt-1" />
-                <div>
-                  <Link
-                    href={`/Courses/${cid}/Assignments/${a._id}`}
-                    className="wd-assign-title"
-                  >
-                    {shortTitle(a.title)}
-                  </Link>
-                  <div className="text-muted small">
-                    <span className="text-danger">Multiple Modules</span>
-                    <span className="mx-2">|</span>
-                    <span>
-                      <span className="fw-semibold">Not available until</span>{" "}
-                      {a.availableFrom || "—"}
-                    </span>
-                    <span className="mx-2">|</span>
-                    <span>{a.points ?? 100} pts</span>
-                  </div>
-                  <div className="text-muted small">
-                    <span className="fw-semibold">Due</span> {a.due || "—"}
-                  </div>
-                </div>
-              </div>
-
-              <div className="d-flex align-items-center gap-3">
-                <FaCheckCircle className="wd-ok" />
-
-                {/* Delete with confirm */}
-                <FaTrash
-                  className="text-danger"
-                  role="button"
-                  onClick={() => {
-                    if (confirm("Remove this assignment?")) {
-                      dispatch(deleteAssignment(a._id));
-                    }
-                  }}
-                  title="Delete"
-                />
-                <FaEllipsisV className="wd-kebab" />
-              </div>
+      {/* Assignments List */}
+      <ul className="list-group">
+        {assignments.map((a: any) => (
+          <li key={a._id} className="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{a.title}</strong>
+              <div className="small text-muted">Course: {a.course}</div>
             </div>
-          ))}
-        </div>
-      </div>
+            
+            <div className="d-flex gap-2">
+              <button
+                className="btn btn-sm btn-warning"
+                onClick={() => startEdit(a)}
+              >
+                Edit
+              </button>
+              
+              <button
+                className="btn btn-sm btn-danger"
+                onClick={() => deleteAssignment(a._id)}
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {assignments.length === 0 && (
+        <p className="text-muted mt-3">No assignments yet. Create one above!</p>
+      )}
     </div>
   );
 }

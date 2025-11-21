@@ -19,3 +19,40 @@
 .wd-auth h1 { margin: 0 0 12px 0; }
 .wd-auth .form-control { margin-bottom: 12px; }
 .wd-auth .btn { width: 100%; }
+
+/* Signout button styling */
+#wd-account-navigation .wd-signout-item {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+#wd-account-navigation .wd-signout-link {
+  background: none;
+  border: none;
+  color: #c00;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+#wd-account-navigation .wd-signout-link:hover {
+  text-decoration: underline;
+}
+
+/* Account shell layout */
+#wd-account-shell {
+  display: flex;
+  min-height: calc(100vh - 0px);
+}
+
+#wd-account-main {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 600px;
+}

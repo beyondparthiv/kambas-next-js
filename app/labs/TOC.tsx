@@ -70,7 +70,7 @@ export default function TOC() {
       </NavItem>
 
       <NavItem>
-        <NavLink as={Link} href="/Dashboard">
+        <NavLink as={Link} href="/Account/Signin">
           Kambaz
         </NavLink>
       </NavItem>

@@ -4,7 +4,7 @@
 import { ReactNode, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../store";
+import type { RootState } from "../../Store/store";
 import { FaAlignJustify } from "react-icons/fa";
 import "./index.css";
 
