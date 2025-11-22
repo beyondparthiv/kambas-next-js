@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../../../store";
+import type { RootState } from "../../../../Store/store";
 import {
   addAssignment,
   updateAssignment,
@@ -17,7 +17,7 @@ export default function AssignmentEditor() {
   const dispatch = useDispatch();
 
   const { assignments } = useSelector(
-    (s: RootState) => s.assignmentsReducer
+    (s: RootState) => s.assignments
   );
 
   const existing = assignments.find((x) => x._id === aid && x.course === cid);
@@ -31,20 +31,27 @@ export default function AssignmentEditor() {
       title: "New Assignment",
       description: "",
       points: 100,
-      due: "",
-      availableFrom: "",
-      availableUntil: "",
+      dueDate: "",
+      availableDate: "",
     };
   });
 
   const onSave = () => {
     if (isNew) {
-      const { _id, ...data } = state;
-      dispatch(addAssignment({ ...data, course: cid }));
+      const newAssignment = {
+        _id: new Date().getTime().toString(),
+        course: cid,
+        title: state.title,
+        description: state.description,
+        points: state.points,
+        dueDate: state.dueDate,
+        availableDate: state.availableDate,
+      };
+      dispatch(addAssignment(newAssignment));
     } else {
       dispatch(updateAssignment(state));
     }
-    router.push(`/Courses/${cid}/Assignments`);
+    router.push(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
   return (
@@ -61,7 +68,7 @@ export default function AssignmentEditor() {
 
           <div className="card wd-desc-card mb-3">
             <div className="card-body p-3">
-              <div className="text-danger fw-semibold mb-2">Available online</div>
+              <div className="text-danger fw-semibold mb-2">Description</div>
               <textarea
                 className="form-control border-0 p-0"
                 style={{ minHeight: 280, resize: "vertical" }}
@@ -77,6 +84,7 @@ export default function AssignmentEditor() {
             <label className="form-label fw-semibold">Points</label>
             <input
               className="form-control"
+              type="number"
               value={String(state.points ?? 0)}
               onChange={(e) =>
                 setState({ ...state, points: Number(e.target.value) || 0 })
@@ -93,47 +101,34 @@ export default function AssignmentEditor() {
 
               <div className="mb-3">
                 <div className="fw-semibold small mb-1">Assign to</div>
-                <input className="form-control" defaultValue="Everyone" />
+                <input className="form-control" defaultValue="Everyone" readOnly />
               </div>
 
               <div className="mb-3">
-                <div className="fw-semibold small mb-1">Due</div>
+                <div className="fw-semibold small mb-1">Due Date</div>
                 <input
                   type="date"
                   className="form-control"
-                  value={state.due || ""}
-                  onChange={(e) => setState({ ...state, due: e.target.value })}
+                  value={state.dueDate || ""}
+                  onChange={(e) => setState({ ...state, dueDate: e.target.value })}
                 />
               </div>
 
-              <div className="row g-2">
-                <div className="col-6">
-                  <div className="fw-semibold small mb-1">Available from</div>
-                  <input
-                    type="date"
-                    className="form-control"
-                    value={state.availableFrom || ""}
-                    onChange={(e) =>
-                      setState({ ...state, availableFrom: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="col-6">
-                  <div className="fw-semibold small mb-1">Until</div>
-                  <input
-                    type="date"
-                    className="form-control"
-                    value={state.availableUntil || ""}
-                    onChange={(e) =>
-                      setState({ ...state, availableUntil: e.target.value })
-                    }
-                  />
-                </div>
+              <div className="mb-3">
+                <div className="fw-semibold small mb-1">Available From</div>
+                <input
+                  type="date"
+                  className="form-control"
+                  value={state.availableDate || ""}
+                  onChange={(e) =>
+                    setState({ ...state, availableDate: e.target.value })
+                  }
+                />
               </div>
 
               <div className="d-flex gap-2 mt-4">
                 <Link
-                  href={`/Courses/${cid}/Assignments`}
+                  href={`/Kambaz/Courses/${cid}/Assignments`}
                   className="btn btn-secondary w-50"
                 >
                   Cancel
@@ -143,13 +138,6 @@ export default function AssignmentEditor() {
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* hidden selects to match rubric look & feel (no behavior needed) */}
-          <div className="visually-hidden">
-            <select defaultValue="ASSIGNMENTS" />
-            <select defaultValue="percentage" />
-            <select defaultValue="online" />
           </div>
         </div>
       </div>
