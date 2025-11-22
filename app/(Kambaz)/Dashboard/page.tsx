@@ -1,4 +1,4 @@
-// app/(Kambaz)/Dashboard/page.tsx - USES PERSISTED DATA
+// app/(Kambaz)/Dashboard/page.tsx - WITH HYDRATION FIX
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -28,6 +28,9 @@ export default function Dashboard() {
   const currentUser = useSelector((s: RootState) => s.account.currentUser);
   const courses = useSelector((s: RootState) => s.courses.courses);
 
+  // Prevent hydration mismatch
+  const [mounted, setMounted] = useState(false);
+
   const [course, setCourse] = useState<Course>({
     _id: "",
     name: "New Course",
@@ -40,26 +43,29 @@ export default function Dashboard() {
   const [enrolledCourseIds, setEnrolledCourseIds] = useState<string[]>([]);
 
   useEffect(() => {
-    if (!currentUser) {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && !currentUser) {
       router.push("/Account/Signin");
     }
-  }, [currentUser, router]);
+  }, [currentUser, router, mounted]);
 
   // Load courses ONLY if Redux store is empty
   useEffect(() => {
-    if (currentUser && courses.length === 0) {
+    if (mounted && currentUser && courses.length === 0) {
       console.log("📦 No courses in Redux, fetching from server...");
       if (showEnrolled) {
         fetchEnrolledCourses();
       } else {
         fetchAllCourses();
       }
-    } else if (currentUser && courses.length > 0) {
+    } else if (mounted && currentUser && courses.length > 0) {
       console.log("✅ Using persisted courses from localStorage:", courses.length);
-      // Extract enrolled IDs from persisted data
       setEnrolledCourseIds(courses.map((c: any) => c._id));
     }
-  }, [currentUser]);
+  }, [currentUser, mounted]);
 
   const fetchEnrolledCourses = async () => {
     try {
@@ -145,7 +151,7 @@ export default function Dashboard() {
       if (showEnrolled) {
         dispatch(setCourses(courses.filter((c: any) => c._id !== courseId)));
       }
-      alert("✅ Unenrolled! (Demo)");
+      alert("✅ Unenrolled!");
     }
   };
 
@@ -217,7 +223,14 @@ export default function Dashboard() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (!currentUser) return null;
+  // Don't render until mounted
+  if (!mounted) {
+    return null;
+  }
+
+  if (!currentUser) {
+    return null;
+  }
 
   const isEnrolled = (courseId: string) => enrolledCourseIds.includes(courseId);
 
