@@ -1,13 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/(Kambaz)/Store/store.ts
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import accountReducer from "./accountReducer";
 import coursesReducer from "../Courses/[cid]/reducer";
 import modulesReducer from "../Courses/[cid]/Modules/reducer";
 import assignmentsReducer from "../Courses/[cid]/Assignments/reducer";
 
+// Combine reducers
+const rootReducer = combineReducers({
+  account: accountReducer,
+  courses: coursesReducer,
+  modules: modulesReducer,
+  assignments: assignmentsReducer,
+});
+
 // Load state from localStorage
-const loadState = () => {
+const loadState = (): any => {
   if (typeof window === "undefined") {
     return undefined;
   }
@@ -52,18 +60,15 @@ const saveState = (state: any) => {
   }
 };
 
-// Load persisted state
-const persistedState = loadState();
-
+// Create store
 export const store = configureStore({
-  reducer: {
-    account: accountReducer,
-    courses: coursesReducer,
-    modules: modulesReducer,
-    assignments: assignmentsReducer,
-  },
-  preloadedState: persistedState as any,
+  reducer: rootReducer,
+  preloadedState: loadState(),
 });
+
+// Export types AFTER store is created
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 // Subscribe to store changes and save to localStorage
 if (typeof window !== "undefined") {
@@ -73,6 +78,3 @@ if (typeof window !== "undefined") {
     saveState(state);
   });
 }
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
