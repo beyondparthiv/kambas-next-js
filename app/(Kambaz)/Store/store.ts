@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// app/(Kambaz)/Store/store.ts - COMPLETE FIXED VERSION
+// app/(Kambaz)/Store/store.ts
 import { configureStore } from "@reduxjs/toolkit";
 import accountReducer from "./accountReducer";
 import coursesReducer from "../Courses/[cid]/reducer";
@@ -62,7 +62,7 @@ export const store = configureStore({
     modules: modulesReducer,
     assignments: assignmentsReducer,
   },
-  preloadedState: persistedState,
+  preloadedState: persistedState as any,
 });
 
 // Subscribe to store changes and save to localStorage
