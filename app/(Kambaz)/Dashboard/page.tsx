@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!currentUser) {
-      router.push("/Kambaz/Account/Signin");
+      router.push("/Account/Signin");
     }
   }, [currentUser, router]);
 
