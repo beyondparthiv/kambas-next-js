@@ -17,7 +17,7 @@ export default function ModulesPage() {
   const courseId = params?.cid as string;
   const dispatch = useDispatch<AppDispatch>();
 
-  const modules = useSelector((s: RootState) => s.modulesReducer.modules);
+  const modules = useSelector((s: RootState) => s.modules.modules);
 
   const [module, setModule] = useState({
     _id: "",

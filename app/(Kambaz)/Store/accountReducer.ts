@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/(Kambaz)/Store/accountReducer.ts
-"use client";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 

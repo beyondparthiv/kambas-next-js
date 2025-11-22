@@ -16,7 +16,7 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
   const { cid } = useParams<{ cid: string }>();
 
   // pull courses from Redux
-  const { courses } = useSelector((s: RootState) => s.coursesReducer);
+  const { courses } = useSelector((s: RootState) => s.courses);
   const course = useMemo(
     () => courses.find((c: any) => c._id === cid),
     [courses, cid]

@@ -92,7 +92,7 @@ export default function SigninPage() {
       </button>
 
       <div className="mt-3 text-center">
-        <Link href="/Account/Signup">Don&apos;t have an account? Sign up</Link>
+        <Link href="/Signup">Don&apos;t have an account? Sign up</Link>
       </div>
     </>
   );

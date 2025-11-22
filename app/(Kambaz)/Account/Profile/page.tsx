@@ -31,7 +31,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!currentUser) {
-      router.push("/Signin");
+      router.push("/Account/Signin");
     } else {
       // Format date properly for input type="date"
       let formattedDob = "";

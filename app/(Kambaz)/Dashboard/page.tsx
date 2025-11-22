@@ -26,7 +26,7 @@ export default function Dashboard() {
   const router = useRouter();
 
   const currentUser = useSelector((s: RootState) => s.account.currentUser);
-  const courses = useSelector((s: RootState) => s.coursesReducer.courses);
+  const courses = useSelector((s: RootState) => s.courses.courses);
 
   const [course, setCourse] = useState<Course>({
     _id: "",

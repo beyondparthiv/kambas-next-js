@@ -18,7 +18,7 @@ export default function AssignmentsPage() {
   const courseId = params?.cid as string;
   const dispatch = useDispatch<AppDispatch>();
 
-  const assignments = useSelector((s: RootState) => s.assignmentsReducer.assignments);
+  const assignments = useSelector((s: RootState) => s.assignments.assignments);
 
   const [assignment, setAssignment] = useState({
     _id: "",
