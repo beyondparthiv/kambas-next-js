@@ -168,6 +168,7 @@ export default function Dashboard() {
       );
 
       dispatch(addNewCourse(response.data));
+      setEnrolledCourseIds([...enrolledCourseIds, response.data._id]);
       setCourse({ _id: "", name: "New Course", number: "", description: "New Description" });
       alert("✅ Course created!");
     } catch (error: any) {
@@ -178,6 +179,7 @@ export default function Dashboard() {
         description: course.description,
       };
       dispatch(addNewCourse(newCourse));
+      setEnrolledCourseIds([...enrolledCourseIds, newCourse._id]);
       setCourse({ _id: "", name: "New Course", number: "", description: "New Description" });
       alert("✅ Course added!");
     }
@@ -244,9 +246,30 @@ export default function Dashboard() {
           <h5 className="mb-0">{course._id ? "Edit Course" : "New Course"}</h5>
           <button className="btn btn-warning" onClick={updateCourse} disabled={!course._id}>Update</button>
           <button className="btn btn-primary" onClick={addCourse}>Add</button>
-          <button className="btn btn-secondary ms-auto" onClick={toggleView}>
-            {showEnrolled ? "See All Courses" : "See Enrolled Courses"}
-          </button>
+          <div className="ms-auto d-flex gap-2">
+            <button
+              className={`btn ${!showEnrolled ? 'btn-primary' : 'btn-outline-primary'}`}
+              onClick={() => {
+                if (showEnrolled) {
+                  setShowEnrolled(false);
+                  fetchAllCourses();
+                }
+              }}
+            >
+              All Courses
+            </button>
+            <button
+              className={`btn ${showEnrolled ? 'btn-primary' : 'btn-outline-primary'}`}
+              onClick={() => {
+                if (!showEnrolled) {
+                  setShowEnrolled(true);
+                  fetchEnrolledCourses();
+                }
+              }}
+            >
+              My Courses
+            </button>
+          </div>
         </div>
 
         <input className="form-control mb-2" value={course.name} onChange={(e) => setCourse({ ...course, name: e.target.value })} placeholder="Course name" />

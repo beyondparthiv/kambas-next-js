@@ -1,30 +1,55 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
-import { users, enrollments } from "../../../Database"; // adjust relative path if your file lives deeper
+
+const API_BASE = process.env.NEXT_PUBLIC_HTTP_SERVER || "http://localhost:4000";
 
 type User = {
   _id: string;
   firstName: string;
   lastName: string;
   loginId: string;
+  username: string;
   section: string;
   role: string;
   lastActivity: string;
   totalActivity: string;
 };
 
-type Enrollment = { _id: string; user: string; course: string };
-
 export default function People() {
   const { cid } = useParams() as { cid: string };
+  const [list, setList] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const list = (users as User[]).filter((usr) =>
-    (enrollments as Enrollment[]).some(
-      (e) => e.user === usr._id && e.course === cid
-    )
-  );
+  useEffect(() => {
+    const fetchEnrolledUsers = async () => {
+      try {
+        const response = await axios.get(`${API_BASE}/api/courses/${cid}/users`);
+        setList(response.data);
+      } catch (error) {
+        console.error("Error fetching enrolled users:", error);
+        setList([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (cid) {
+      fetchEnrolledUsers();
+    }
+  }, [cid]);
+
+  if (loading) {
+    return (
+      <div id="wd-people">
+        <h1>People</h1>
+        <p>Loading enrolled users...</p>
+      </div>
+    );
+  }
 
   return (
     <div id="wd-people">
@@ -50,7 +75,7 @@ export default function People() {
                   <span className="wd-first-name">{user.firstName}</span>{" "}
                   <span className="wd-last-name">{user.lastName}</span>
                 </td>
-                <td className="wd-login-id">{user.loginId}</td>
+                <td className="wd-login-id">{user.loginId || user.username}</td>
                 <td className="wd-section">{user.section}</td>
                 <td className="wd-role">{user.role}</td>
                 <td className="wd-last-activity">{user.lastActivity}</td>
