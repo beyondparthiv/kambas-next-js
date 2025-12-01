@@ -35,6 +35,26 @@ export const updateUser = async (user: any) => {
   return response.data;
 };
 
+export const fetchAllUsers = async () => {
+  const response = await axiosInstance.get("/api/users");
+  return response.data;
+};
+
+export const deleteUser = async (userId: string) => {
+  const response = await axiosInstance.delete(`/api/users/${userId}`);
+  return response.data;
+};
+
+export const updateUserById = async (userId: string, updates: any) => {
+  const response = await axiosInstance.put(`/api/users/${userId}`, updates);
+  return response.data;
+};
+
+export const createUser = async (user: any) => {
+  const response = await axiosInstance.post("/api/users", user);
+  return response.data;
+};
+
 // ==================== COURSE API ====================
 export const fetchAllCourses = async () => {
   const response = await axiosInstance.get("/api/courses");

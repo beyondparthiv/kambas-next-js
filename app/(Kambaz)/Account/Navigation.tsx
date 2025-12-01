@@ -52,7 +52,10 @@ export default function AccountNavigation() {
         <li className={isActive("/Account/Profile") ? "wd-active" : ""}>
           <Link href="/Account/Profile">Profile</Link>
         </li>
-        
+        <li className={isActive("/Account/Users") ? "wd-active" : ""}>
+          <Link href="/Account/Users">Users</Link>
+        </li>
+
         {/* Signout button - only show if logged in */}
         {currentUser && (
           <li className="wd-signout-item">
