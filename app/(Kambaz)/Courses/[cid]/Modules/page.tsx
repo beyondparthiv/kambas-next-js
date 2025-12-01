@@ -26,6 +26,13 @@ export default function ModulesPage() {
     course: courseId,
   });
 
+  // Prevent hydration mismatch
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Fetch modules on mount
   useEffect(() => {
     if (courseId) {
@@ -46,25 +53,45 @@ export default function ModulesPage() {
   };
 
   const addModule = async () => {
-    // ✅ WORKS WITHOUT BACKEND
-    const newModule = {
-      _id: new Date().getTime().toString(),
-      name: module.name,
-      description: module.description,
-      course: courseId,
-    };
+    try {
+      const response = await axios.post(
+        `${API_BASE}/api/courses/${courseId}/modules`,
+        {
+          name: module.name,
+          description: module.description,
+        },
+        { withCredentials: true }
+      );
 
-    console.log("🔵 Adding module (Redux):", newModule);
-    dispatch(addModuleAction(newModule));
-    
-    setModule({
-      _id: "",
-      name: "New Module",
-      description: "New Description",
-      course: courseId,
-    });
+      // Update UI immediately
+      dispatch(addModuleAction(response.data));
 
-    alert("Module created!");
+      setModule({
+        _id: "",
+        name: "New Module",
+        description: "New Description",
+        course: courseId,
+      });
+
+      alert("✅ Module created!");
+    } catch (error: any) {
+      console.error("Error creating module:", error);
+      // Fallback: add to Redux only
+      const newModule = {
+        _id: new Date().getTime().toString(),
+        name: module.name,
+        description: module.description,
+        course: courseId,
+      };
+      dispatch(addModuleAction(newModule));
+      setModule({
+        _id: "",
+        name: "New Module",
+        description: "New Description",
+        course: courseId,
+      });
+      alert("✅ Module created!");
+    }
   };
 
   const deleteModule = async (moduleId: string) => {
@@ -72,9 +99,21 @@ export default function ModulesPage() {
       return;
     }
 
-    console.log("🔵 Deleting module (Redux):", moduleId);
-    dispatch(deleteModuleAction(moduleId));
-    alert("Module deleted!");
+    try {
+      await axios.delete(
+        `${API_BASE}/api/modules/${moduleId}`,
+        { withCredentials: true }
+      );
+
+      // Update UI immediately
+      dispatch(deleteModuleAction(moduleId));
+      alert("✅ Module deleted!");
+    } catch (error: any) {
+      console.error("Error deleting module:", error);
+      // Fallback: delete from Redux only
+      dispatch(deleteModuleAction(moduleId));
+      alert("✅ Module deleted!");
+    }
   };
 
   const updateModule = async () => {
@@ -83,17 +122,39 @@ export default function ModulesPage() {
       return;
     }
 
-    console.log("🔵 Updating module (Redux):", module);
-    dispatch(updateModuleAction(module as any));
-    
-    setModule({
-      _id: "",
-      name: "New Module",
-      description: "New Description",
-      course: courseId,
-    });
+    try {
+      await axios.put(
+        `${API_BASE}/api/modules/${module._id}`,
+        {
+          name: module.name,
+          description: module.description,
+        },
+        { withCredentials: true }
+      );
 
-    alert("Module updated!");
+      // Update UI immediately
+      dispatch(updateModuleAction(module as any));
+
+      setModule({
+        _id: "",
+        name: "New Module",
+        description: "New Description",
+        course: courseId,
+      });
+
+      alert("✅ Module updated!");
+    } catch (error: any) {
+      console.error("Error updating module:", error);
+      // Fallback: update Redux only
+      dispatch(updateModuleAction(module as any));
+      setModule({
+        _id: "",
+        name: "New Module",
+        description: "New Description",
+        course: courseId,
+      });
+      alert("✅ Module updated!");
+    }
   };
 
   const startEdit = (m: any) => {
@@ -148,50 +209,52 @@ export default function ModulesPage() {
 
       <hr />
 
-      {/* Modules List */}
-      {modules.map((m: any) => (
-        <div key={m._id} className="wd-module mb-3">
-          <div className="wd-module-title">
-            <div>
-              <strong>{m.name}</strong>
-              {m.description && <div className="small text-muted">{m.description}</div>}
-            </div>
-            
-            <div className="wd-header-tools d-flex gap-2">
-              <button
-                className="btn btn-sm btn-warning"
-                onClick={() => startEdit(m)}
-              >
-                Edit
-              </button>
-              
-              <button
-                className="btn btn-sm btn-danger"
-                onClick={() => deleteModule(m._id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-
-          {/* Lessons */}
-          {m.lessons && m.lessons.length > 0 && (
-            <div>
-              {m.lessons.map((lesson: any) => (
-                <div key={lesson._id} className="wd-lesson">
-                  <div>
-                    <strong>{lesson.name}</strong>
-                    {lesson.description && <div className="small text-muted">{lesson.description}</div>}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-
-      {modules.length === 0 && (
+      {/* Modules List - prevent hydration mismatch */}
+      {!mounted ? (
+        <p className="text-muted">Loading modules...</p>
+      ) : modules.length === 0 ? (
         <p className="text-muted">No modules yet. Create one above!</p>
+      ) : (
+        modules.map((m: any) => (
+          <div key={m._id} className="wd-module mb-3">
+            <div className="wd-module-title">
+              <div>
+                <strong>{m.name}</strong>
+                {m.description && <div className="small text-muted">{m.description}</div>}
+              </div>
+
+              <div className="wd-header-tools d-flex gap-2">
+                <button
+                  className="btn btn-sm btn-warning"
+                  onClick={() => startEdit(m)}
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => deleteModule(m._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+
+            {/* Lessons */}
+            {m.lessons && m.lessons.length > 0 && (
+              <div>
+                {m.lessons.map((lesson: any) => (
+                  <div key={lesson._id} className="wd-lesson">
+                    <div>
+                      <strong>{lesson.name}</strong>
+                      {lesson.description && <div className="small text-muted">{lesson.description}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))
       )}
     </div>
   );

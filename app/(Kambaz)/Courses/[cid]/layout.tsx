@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useMemo, useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../Store/store";
@@ -24,6 +24,13 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
 
   // left navigation toggle
   const [navOpen, setNavOpen] = useState(true);
+
+  // Prevent hydration mismatch - only render course name after mount
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // build the left-nav links (same as your previous SidebarNav use)
   const base = `/Courses/${cid}`;
@@ -48,7 +55,7 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
           aria-label="Toggle course navigation"
           onClick={() => setNavOpen((v) => !v)}
         />
-        <span>{course?.name ?? "Course"}</span>
+        <span>{mounted ? (course?.name ?? "Course") : "Course"}</span>
       </h2>
       <hr />
 
